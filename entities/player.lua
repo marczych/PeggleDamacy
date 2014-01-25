@@ -1,16 +1,9 @@
--- Require any needed modules.
-local Class = require "hump.class"
-local constants = require "constants"
-local utils = require "utils"
-
--- Define the class (and constructor).
 Player = Class{
    init = function(self)
-   end,
-
-   ballsRemaining = constants.STARTING_BALLS
-   availableSpectrum = {}
-   score = 0
+      self.ballsRemaining = constants.STARTING_BALLS
+      self.availableSpectrum = {}
+      self.score = 0
+   end
 }
 
 -- Not much to update here yet.
@@ -28,5 +21,4 @@ end
 function Player:draw()
 end
 
--- Used for idiomatic module loading.
 return Player
