@@ -4,6 +4,7 @@ local Utils = require "utils.utils"
 
 -- Load game states.
 title = require "states.title"
+play = require "states.play"
 
 function love.load()
    -- Register the game state dispatcher and switch into the initial state.
