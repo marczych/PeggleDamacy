@@ -38,7 +38,7 @@ function Ball:bounce(normal, dt)
 end
 
 function Ball:attachPeg(peg)
-   peg.position = self.position - peg.position
+   peg.position = peg.position - self.position
    table.insert(self.attachedPegs, peg)
 end
 

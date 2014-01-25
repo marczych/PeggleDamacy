@@ -3,10 +3,13 @@ local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
 local Peg = require "entities.peg"
 
-local Play = {}
-local ball
 local background
 local blueBucket
+local ball
+local pegs
+local score
+
+local Play = {}
 
 function Play:enter()
    pegs = {}
@@ -16,6 +19,7 @@ function Play:enter()
    end
 
    ball = Ball()
+   score = 0
    background = BackGround()
    blueBucket = Bucket(250)
 end
@@ -32,6 +36,7 @@ function Play:update(dt)
       if normal:len() < ballAndPegSize then
          ball:bounce(normal, dt)
          ball:attachPeg(peg)
+         score = score + 100
          table.remove(pegs, i)
          break
       end
@@ -40,7 +45,7 @@ end
 
 function Play:draw()
    love.graphics.setColor(255, 255, 255)
-   
+
    background:draw()
    ball:draw()
    blueBucket:draw()
