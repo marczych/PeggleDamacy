@@ -53,7 +53,7 @@ end
 
 --Draw
 -------------------------------
-function Background:draw(dt)
+function Background:draw()
 	love.graphics.draw(imgBackground, 0, 0)	
 	
 	self.pos1 = Utils.numberInterpolate(0, 0, Constants.SCREEN_HEIGHT, self.parallax1)
