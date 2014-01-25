@@ -1,13 +1,14 @@
 --Import shit
 --------------------
-local BG = require "entities.background"
+local BackGround = require "entities.background"
 
 
 local play = {}
 
-local Background = BG()
 local Ball = require "entities.ball"
 local ball = Ball()
+local background = BackGround()
+
 
 function play:enter()
 	
@@ -21,8 +22,7 @@ function play:draw()
    love.graphics.setColor(125, 100, 200)
    love.graphics.print("Play!", 200, 200)
    
-   Background:draw()
-
+   background:draw()
    ball:draw()
 end
 

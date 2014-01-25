@@ -17,7 +17,7 @@ local Background = Class{
 		self.parallax3 = .5
 
 		self.isPaused = false
-	end
+	end,
 }
 
 --Update
@@ -50,3 +50,9 @@ end
 function Background:draw(dt)
 	love.graphics.draw(imgBackground, 500, 500)	
 end
+
+
+-- Return the class so lua is not confused about booleans
+---------------------------------------------------------
+-- Very important you know
+return Background
