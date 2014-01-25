@@ -28,12 +28,14 @@ function play:update(dt)
    background:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
 
-   ballAndPegSize = ball.radius + Constants.PEG_RADIUS
+   ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
 
    for i, peg in ipairs(pegs) do
       normal = ball.position - peg.position
       if normal:len() < ballAndPegSize then
          ball:bounce(normal, dt)
+         ball:attachPeg(peg)
+         table.remove(pegs, i)
          break
       end
    end
@@ -46,8 +48,8 @@ function play:draw()
    ball:draw()
    blueBucket:draw()
 
-   for i = 1, 50 do
-      pegs[i]:draw()
+   for _, peg in pairs(pegs) do
+      peg:draw()
    end
 end
 

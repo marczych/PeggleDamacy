@@ -3,21 +3,22 @@ Ball = Class{
       self.position = Vector(Constants.SCREEN_WIDTH / 2, 0)
       self.velocity = Vector(200, 0)
       self.radius = Constants.BALL_INITIAL_RADIUS
+      self.attachedPegs = {}
    end
 }
 
 function Ball:update(dt)
    self:updatePosition(dt)
 
-   if self.position.y > Constants.SCREEN_HEIGHT - self.radius then
+   if self.position.y > Constants.SCREEN_HEIGHT - self:getRadius() then
       self:bounce(Vector(0, -1), dt)
    end
 
-   if self.position.x < 0 + self.radius then
+   if self.position.x < 0 + self:getRadius() then
       self:bounce(Vector(1, 0), dt)
    end
 
-   if self.position.x > Constants.SCREEN_WIDTH - self.radius then
+   if self.position.x > Constants.SCREEN_WIDTH - self:getRadius() then
       self:bounce(Vector(-1, 0), dt)
    end
 end
@@ -36,9 +37,25 @@ function Ball:bounce(normal, dt)
    self:updatePosition(dt)
 end
 
+function Ball:attachPeg(peg)
+   peg.position = self.position - peg.position
+   table.insert(self.attachedPegs, peg)
+end
+
+function Ball:getRadius()
+   return self.radius * math.max(#self.attachedPegs, 1)
+end
+
 function Ball:draw()
    love.graphics.setColor(100, 150, 200)
-   love.graphics.circle("fill", self.position.x, self.position.y, self.radius * 2)
+   love.graphics.circle("fill", self.position.x, self.position.y, self:getRadius())
+
+   love.graphics.setColor(250, 150, 100)
+   for i, peg in ipairs(self.attachedPegs) do
+      position = self.position + peg.position
+
+      love.graphics.circle("fill", position.x, position.y, Constants.PEG_RADIUS)
+   end
 end
 
 return Ball
