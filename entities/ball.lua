@@ -1,8 +1,8 @@
 Ball = Class{
    init = function(self)
-      self.position = Vector(Constants.SCREEN_WIDTH / 2, 0)
-      self.velocity = Vector(200, 0)
       self.radius = Constants.BALL_INITIAL_RADIUS
+      self.position = Vector(Constants.SCREEN_WIDTH / 2, self.radius + 1)
+      self.velocity = Vector(200, 0)
       self.attachedPegs = {}
    end
 }
@@ -14,7 +14,11 @@ function Ball:update(dt)
       self:bounce(Vector(0, -1), dt)
    end
 
-   if self.position.x < 0 + self:getRadius() then
+   if self.position.y < self:getRadius() then
+      self:bounce(Vector(0, 1), dt)
+   end
+
+   if self.position.x < self:getRadius() then
       self:bounce(Vector(1, 0), dt)
    end
 
