@@ -14,7 +14,7 @@ local Play = {}
 function Play:enter()
    pegs = {}
    -- Initialize all of the pegs
-   for i = 1, 50 do
+   for i = 1, Constants.NUM_STARTING_PEGS do
       table.insert(pegs, Peg())
    end
 

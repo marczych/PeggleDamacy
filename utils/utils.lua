@@ -32,33 +32,33 @@ function Utils.wavelengthToRGB(wavelength)
 
    -- violet
    if wavelength < 410 then
-      r = 0.6 - 0.41 * (410 - waveLength) / 30;
+      r = 0.6 - 0.41 * (410 - wavelength) / 30;
       g = 0;
-      b = 0.39 + 0.6 * (410 - waveLength) / 30;
+      b = 0.39 + 0.6 * (410 - wavelength) / 30;
    -- purple to blue
    elseif wavelength < 440 then
-      r = 0.19 - 0.19 * (440 - waveLength) / 30;
+      r = 0.19 - 0.19 * (440 - wavelength) / 30;
       g = 0;
       b = 1;
    -- blue to teal
    elseif wavelength < 490 then
       r = 0;
-      g = 1 - (490 - waveLength) / 50;
+      g = 1 - (490 - wavelength) / 50;
       b = 1;
    -- teal to green
    elseif wavelength < 510 then
       r = 0;
       g = 1;
-      b = (510 - waveLength) / 20;
+      b = (510 - wavelength) / 20;
    -- green to yellow
    elseif wavelength < 580 then
-      r = 1 - (580 - waveLength) / 70;
+      r = 1 - (580 - wavelength) / 70;
       g = 1;
       b = 0;
    -- yellow to orange
    elseif wavelength < 640 then
       r = 1;
-      g = (640 - waveLength) / 60;
+      g = (640 - wavelength) / 60;
       b = 0;
    -- red
    elseif wavelength < 700 then
@@ -67,7 +67,7 @@ function Utils.wavelengthToRGB(wavelength)
       b = 0;
    -- dark red
    else
-      r = 0.35 + 0.65 * (780 - waveLength) / 80;
+      r = 0.35 + 0.65 * (780 - wavelength) / 80;
       g = 0;
       b = 0;
    end
