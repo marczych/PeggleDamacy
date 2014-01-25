@@ -48,6 +48,10 @@ end
 --Draw
 --------------------------
 function Bucket:draw()
+
+	--TODO set color right
+	love.graphics.setColor(255,255,255)
+
 	love.graphics.rectangle("fill", 
 		self.location-(Constants.BUCKET_WIDTH/2), 
 		Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT,
