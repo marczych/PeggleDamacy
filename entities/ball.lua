@@ -43,7 +43,7 @@ function Ball:attachPeg(peg)
 end
 
 function Ball:getRadius()
-   return self.radius * math.max(#self.attachedPegs, 1)
+   return self.radius + math.max(#self.attachedPegs, 1) * 1.5
 end
 
 function Ball:draw()
