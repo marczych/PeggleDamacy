@@ -66,4 +66,8 @@ function Play:keypressed(key, unicode)
    end
 end
 
+function Play:mousepressed(x, y, button)
+   ball:propelTowards(Vector(x, y), 1000)
+end
+
 return Play

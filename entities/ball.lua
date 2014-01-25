@@ -50,6 +50,11 @@ function Ball:getRadius()
    return self.radius + math.max(#self.attachedPegs, 1) * 1.5
 end
 
+function Ball:propelTowards(position, intensity)
+   direction = position - self.position
+   self.velocity = self.velocity + (direction:normalized() * intensity)
+end
+
 function Ball:draw()
    love.graphics.setColor(100, 150, 200)
    love.graphics.circle("fill", self.position.x, self.position.y, self:getRadius())
