@@ -20,6 +20,16 @@ function Play:enter()
 
    ball = Ball()
    score = 0
+   -- A set of lower and upper wavelength bounds that define what color 
+   -- pegs the player can collect
+   -- Start with the greens.
+   availableSpectrum = {
+      {
+         lower=450, 
+         upper=600
+      }
+   }
+
    background = BackGround()
    blueBucket = Bucket(250)
 end
@@ -30,16 +40,18 @@ function Play:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
 
    ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
+   
 
    for i, peg in ipairs(pegs) do
       normal = ball.position - peg.position
       if normal:len() < ballAndPegSize then
-         ball:attachPeg(peg)
+         if Utils.canCollect(peg.wavelength, availableSpectrum) then
+            ball:attachPeg(peg)
+            -- TODO: Increase the availableSpectrum
+            table.remove(pegs, i)
+            score = score + 100
+         end
          ball:bounce(normal, dt)
-
-         table.remove(pegs, i)
-
-         score = score + 100
          break
       end
    end
@@ -60,6 +72,9 @@ end
 function Play:keypressed(key, unicode)
    if key == 'j' then
       ball.velocity = ball.velocity * 1.1
+   end
+   if key == 'k' then
+      ball.velocity = ball.velocity * 0.8
    end
    if key == 'r' then
       Play.enter()
