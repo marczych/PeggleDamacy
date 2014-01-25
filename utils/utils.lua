@@ -1,10 +1,14 @@
 local Utils = {}
 
-Utils.clamp = function (x, lower, upper)
+function Utils.clamp (x, lower, upper)
    return math.max(lower, math.min(upper, x))
 end
 
-Utils.wavelengthToRGB = function (wavelength)
+function Utils.randomWavelength ()
+   return math.floor(math.random(380, 780))
+end
+
+function Utils.wavelengthToRGB (wavelength)
    local r, g, b
 
    wavelength = Utils.clamp(wavelength, 380, 780)
