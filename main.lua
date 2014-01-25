@@ -1,4 +1,5 @@
 Gamestate = require "hump.gamestate"
+Vector = require "hump.vector"
 Constants = require "utils.constants"
 Utils = require "utils.utils"
 Class = require "hump.class"

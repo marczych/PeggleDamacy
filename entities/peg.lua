@@ -1,8 +1,8 @@
 Peg = Class{
    init = function(self)
-      self.location = utils.randomLocation()
-      self.wavelength = utils.randomWavelength()
-      self.color = utils.wavelengthToRGB(wavelength)
+      self.location = Utils.randomLocation()
+      self.wavelength = Utils.randomWavelength()
+      self.color = Utils.wavelengthToRGB(wavelength)
    end
 }
 
