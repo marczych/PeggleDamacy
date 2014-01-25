@@ -8,18 +8,34 @@ local Constants = require "utils.constants"
 -------- Class ----------
 -------------------------
 local Bucket = Class {
-	init = function(self, xCoord, colour)
+	init = function(self, colour)
 		self.location = xCoord 
 		self.color = colour
+		self.swing = .5
+		self.positive = true
 	end,
 }
 
 --Update
 --------------------------
 function Bucket:update(dt)
-	--TODO just animate I guess. If we were reall dumb we could move these
-	--Or something
+	if(self.positive) then
+		self.swing = self.swing + dt*.25
+	else
+		self.swing = self.swing - dt*.25
+	end
+
+	if(self.swing >= 1) then
+		self.positive = false
+	end
+	if (self.swing <= 0) then
+		self.positive = true
+	end
+
+	self.location = Utils.numberInterpolate(0, 0, Constants.SCREEN_WIDTH,
+		self.swing)
 end
+
 
 --Draw
 --------------------------

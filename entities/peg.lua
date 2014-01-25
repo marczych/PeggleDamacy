@@ -17,11 +17,15 @@ function Peg:update(dt)
 
 end
 
--- Draw the peg on screen!
 function Peg:draw()
+   self:drawAtPosition(self.position)
+end
+
+-- Draw the peg on screen!
+function Peg:drawAtPosition(position)
    -- TODO: use self.color instead
    love.graphics.setColor(250, 150, 100)
-   love.graphics.circle("fill", self.position.x, self.position.y, Constants.PEG_RADIUS)
+   love.graphics.circle("fill", position.x, position.y, Constants.PEG_RADIUS)
 end
 
 -- Used for idiomatic module loading.

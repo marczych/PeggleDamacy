@@ -1,34 +1,31 @@
---Import shit
---------------------
 local BackGround = require "entities.background"
-local Bucketz = require "entities.bucket"
-local Vector = require "hump.vector"
-local Constants = require "utils.constants"
-
-local play = {}
-
+local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
-local ball = Ball()
-
 local Peg = require "entities.peg"
--- All of the pegs in the level
-local pegs = {}
-
 local Player = require "entities.player"
-local player = Player()
 
-local background = BackGround()
-local blueBucket = Bucketz(250)
+local background
+local blueBucket
+local ball
+local pegs
+local player
 
+local Play = {}
 
-function play:enter()
+function Play:enter()
+   pegs = {}
    -- Initialize all of the pegs
    for i = 1, 50 do
-      pegs[i] = Peg()
+      table.insert(pegs, Peg())
    end
+
+   ball = Ball()
+   player = Player()
+   background = BackGround()
+   blueBucket = Bucket(250)
 end
 
-function play:update(dt)
+function Play:update(dt)
    ball:update(dt)
    background:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
@@ -47,9 +44,9 @@ function play:update(dt)
    end
 end
 
-function play:draw()
-   love.graphics.setColor(125, 100, 200)
-   
+function Play:draw()
+   love.graphics.setColor(255, 255, 255)
+
    background:draw()
    ball:draw()
    blueBucket:draw()
@@ -59,10 +56,13 @@ function play:draw()
    end
 end
 
-function play:keypressed(key, unicode)
+function Play:keypressed(key, unicode)
    if key == 'j' then
       ball.velocity = ball.velocity * 1.1
    end
+   if key == 'r' then
+      Play.enter()
+   end
 end
 
-return play
+return Play
