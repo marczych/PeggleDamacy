@@ -1,5 +1,3 @@
-local Gamestate = require "hump.gamestate"
-
 local play = {}
 
 function play:enter()

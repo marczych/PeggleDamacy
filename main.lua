@@ -1,13 +1,16 @@
-local Gamestate = require "hump.gamestate"
-local Constants = require "utils.constants"
-local Utils = require "utils.utils"
+Gamestate = require "hump.gamestate"
+Constants = require "utils.constants"
+Utils = require "utils.utils"
 
 -- Load game states.
-title = require "states.title"
-play = require "states.play"
+
+States = {
+   title = require "states.title",
+   play = require "states.play"
+}
 
 function love.load()
    -- Register the game state dispatcher and switch into the initial state.
    Gamestate.registerEvents()
-   Gamestate.switch(title)
+   Gamestate.switch(States.title)
 end

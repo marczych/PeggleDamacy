@@ -1,5 +1,3 @@
-local Gamestate = require "hump.gamestate"
-
 local title = {}
 
 function title:enter()
@@ -15,7 +13,7 @@ function title:draw()
 end
 
 function title:keypressed(key, unicode)
-   Gamestate.switch(play)
+   Gamestate.switch(States.play)
 end
 
 return title
