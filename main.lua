@@ -1,4 +1,6 @@
 local Gamestate = require "hump.gamestate"
+local Constants = require "utils.constants"
+local Utils = require "utils.utils"
 
 -- Load game states.
 title = require "states.title"
