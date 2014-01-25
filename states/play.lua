@@ -42,7 +42,7 @@ function play:update(dt)
 end
 
 function play:draw()
-   love.graphics.setColor(125, 100, 200)
+   love.graphics.setColor(255, 255, 255)
    
    background:draw()
    ball:draw()
