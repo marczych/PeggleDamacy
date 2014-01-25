@@ -1,7 +1,7 @@
 Ball = Class{
    init = function(self)
       self.position = Vector(Constants.SCREEN_WIDTH / 2, 0)
-      self.velocity = Vector(50, 0)
+      self.velocity = Vector(200, 0)
    end
 }
 
@@ -10,6 +10,16 @@ function Ball:update(dt)
 
    if self.position.y > Constants.SCREEN_HEIGHT then
       self:bounce(Vector(0, -1))
+      self:updatePosition(dt)
+   end
+
+   if self.position.x < 0 then
+      self:bounce(Vector(1, 0))
+      self:updatePosition(dt)
+   end
+
+   if self.position.x > Constants.SCREEN_WIDTH then
+      self:bounce(Vector(-1, 0))
       self:updatePosition(dt)
    end
 end
