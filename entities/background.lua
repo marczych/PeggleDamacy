@@ -48,7 +48,7 @@ end
 --Draw
 -------------------------------
 function Background:draw(dt)
-	love.graphics.draw(imgBackground, 500, 500)	
+	love.graphics.draw(imgBackground, 0, 0)	
 end
 
 
