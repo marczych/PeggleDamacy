@@ -1,6 +1,7 @@
 Gamestate = require "hump.gamestate"
 Constants = require "utils.constants"
 Utils = require "utils.utils"
+Class = require "hump.class"
 
 -- Load game states.
 

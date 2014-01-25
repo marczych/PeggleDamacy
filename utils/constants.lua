@@ -1,6 +1,6 @@
-local Constants = {}
+return {
+   SCREEN_WIDTH = 1024,
+   SCREEN_HEIGHT = 720,
 
-Constants.SCREEN_WIDTH = 1024
-Constants.SCREEN_HEIGHT = 720
-
-return Constants
+   BALL_INITIAL_SIZE = 200
+}
