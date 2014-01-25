@@ -34,15 +34,15 @@ function Background:update(dt)
 	self.parallax2 = self.parallax2 + (scroll*2)
 	self.parallax3 = self.parallax3 + (scroll*4)
 
-	if(self.parallax1 >= 1) then
+	if(self.parallax1 >= 2) then
 		self.parallax1 = 0
 	end
 
-	if(self.parallax2 >= 1) then
+	if(self.parallax2 >= 2) then
 		self.parallax2 = 0;
 	end
 
-	if(self.parallax3 >= 1) then
+	if(self.parallax3 >= 2) then
 		self.parallax3 = 0;
 	end
 end
@@ -56,13 +56,16 @@ end
 function Background:draw(dt)
 	love.graphics.draw(imgBackground, 0, 0)	
 	
-	self.pos1 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax1)
-	self.pos2 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax2)
-	self.pos3 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax3)
+	self.pos1 = Utils.numberInterpolate(0, 0, Constants.SCREEN_HEIGHT, self.parallax1)
+	self.pos2 = Utils.numberInterpolate(0, 0, Constants.SCREEN_HEIGHT, self.parallax2)
+	self.pos3 = Utils.numberInterpolate(0, 0, Constants.SCREEN_HEIGHT, self.parallax3)
 
 	love.graphics.draw(imgParallax, 0, self.pos1)
-	love.graphics.draw(imgParallax, 0, self.pos2)
-	love.graphics.draw(imgParallax, 0, self.pos3)
+	love.graphics.draw(imgParallax, -10, self.pos1-Constants.SCREEN_HEIGHT)
+	love.graphics.draw(imgParallax, 20, self.pos2)
+	love.graphics.draw(imgParallax, -20, self.pos2-Constants.SCREEN_HEIGHT)
+	love.graphics.draw(imgParallax, 40, self.pos3)
+	love.graphics.draw(imgParallax, -40, self.pos3-Constants.SCREEN_HEIGHT)
 end
 
 
