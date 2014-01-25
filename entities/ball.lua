@@ -8,17 +8,17 @@ Ball = Class{
 function Ball:update(dt)
    self:updatePosition(dt)
 
-   if self.position.y > Constants.SCREEN_HEIGHT then
+   if self.position.y > Constants.SCREEN_HEIGHT - Constants.BALL_INITIAL_RADIUS then
       self:bounce(Vector(0, -1))
       self:updatePosition(dt)
    end
 
-   if self.position.x < 0 then
+   if self.position.x < 0 + Constants.BALL_INITIAL_RADIUS then
       self:bounce(Vector(1, 0))
       self:updatePosition(dt)
    end
 
-   if self.position.x > Constants.SCREEN_WIDTH then
+   if self.position.x > Constants.SCREEN_WIDTH - Constants.BALL_INITIAL_RADIUS then
       self:bounce(Vector(-1, 0))
       self:updatePosition(dt)
    end
@@ -37,7 +37,7 @@ end
 
 function Ball:draw()
    love.graphics.setColor(100, 150, 200)
-   love.graphics.circle("fill", self.position.x, self.position.y, Constants.BALL_INITIAL_SIZE)
+   love.graphics.circle("fill", self.position.x, self.position.y, Constants.BALL_INITIAL_RADIUS * 2)
 end
 
 return Ball
