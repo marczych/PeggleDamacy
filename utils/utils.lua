@@ -8,6 +8,12 @@ function Utils.randomWavelength ()
    return math.floor(math.random(380, 780))
 end
 
+
+function Utils.numberInterpolate(oldValue, min, max, u)
+	return oldValue + (max-min)*u
+end
+--TODO vector interpolates
+
 function Utils.wavelengthToRGB (wavelength)
    local r, g, b
 

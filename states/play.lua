@@ -16,6 +16,7 @@ end
 
 function play:update(dt)
    ball:update(dt)
+   background:update(dt)
 end
 
 function play:draw()

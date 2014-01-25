@@ -12,9 +12,15 @@ local imgParallax = love.graphics.newImage("assets/images/parallax1.png")
 local Background = Class{
 	init = function(self)
 
+		--parallax update
 		self.parallax1 = 0
 		self.parallax2 = .2
 		self.parallax3 = .5
+
+		--parallax draw
+		self.pos1 = 0;
+		self.pos2 = 0;
+		self.pos3 = 0;
 
 		self.isPaused = false
 	end,
@@ -49,6 +55,14 @@ end
 -------------------------------
 function Background:draw(dt)
 	love.graphics.draw(imgBackground, 0, 0)	
+	
+	self.pos1 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax1)
+	self.pos2 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax2)
+	self.pos3 = Utils.numberInterpolate(0, 0, Constants.SCREEEN_HEIGHT, self.parallax3)
+
+	love.graphics.draw(imgParallax, 0, self.pos1)
+	love.graphics.draw(imgParallax, 0, self.pos2)
+	love.graphics.draw(imgParallax, 0, self.pos3)
 end
 
 
