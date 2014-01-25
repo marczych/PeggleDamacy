@@ -11,5 +11,10 @@ return {
 
    BUCKET_HEIGHT = 60,
    BUCKET_WIDTH = 80,
-   BUCKET_WALL = 3
+   BUCKET_WALL = 3,
+
+   -- The lowest visible wavelength.
+   MIN_WAVELENGTH = 380,
+   -- The highest visible wavelength.
+   MAX_WAVELENGTH = 780
 }

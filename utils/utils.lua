@@ -6,10 +6,22 @@ math.randomseed(os.time())
 -- left 5% or right 5% of the screen. Return a random Vector of x & y
 -- coordinates to spawn the peg.
 -- TODO: don't allow pegs to spawn in a location where another peg already exists.
--- Maybe this should go into the place where we're spawning them instead?
 function Utils.randomPegLocation()
    return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95), 
    math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
+end
+
+function Utils.canCollect(pegWavelength, availableSpectrum) 
+   print ("peg wavelength: " .. pegWavelength)
+   for i, spectrumSection in ipairs(availableSpectrum) do
+      print (spectrumSection.lower .. ", " .. spectrumSection.upper)
+      if pegWavelength >= spectrumSection.lower and pegWavelength <= spectrumSection.upper then
+         print ("Collected!")
+         return true
+      end
+   end
+   print ("Bounced!")
+   return false 
 end
 
 function Utils.clamp(x, lower, upper)
@@ -17,7 +29,7 @@ function Utils.clamp(x, lower, upper)
 end
 
 function Utils.randomWavelength()
-   return math.floor(math.random(380, 780))
+   return math.floor(math.random(Constants.MIN_WAVELENGTH, Constants.MAX_WAVELENGTH))
 end
 
 function Utils.numberInterpolate(oldValue, min, max, u)
@@ -28,7 +40,7 @@ end
 function Utils.wavelengthToRGB(wavelength)
    local r, g, b
 
-   wavelength = Utils.clamp(wavelength, 380, 780)
+   wavelength = Utils.clamp(wavelength, Constants.MIN_WAVELENGTH, Constants.MAX_WAVELENGTH)
 
    -- violet
    if wavelength < 410 then
@@ -67,7 +79,7 @@ function Utils.wavelengthToRGB(wavelength)
       b = 0;
    -- dark red
    else
-      r = 0.35 + 0.65 * (780 - wavelength) / 80;
+      r = 0.35 + 0.65 * (Constants.MAX_WAVELENGTH - wavelength) / 80;
       g = 0;
       b = 0;
    end
