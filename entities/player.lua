@@ -1,6 +1,5 @@
-Player = Class{
+Player = Class {
    init = function(self)
-      self.ballsRemaining = constants.STARTING_BALLS
       self.availableSpectrum = {}
       self.score = 0
    end
@@ -12,7 +11,6 @@ function Player:update(dt)
    self.time = self.time + dt
 
    -- TODO: Update score.
-   -- TODO: Update ballsRemaining.
    -- TODO: Update availableSpectrum.
 
 end

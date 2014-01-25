@@ -9,9 +9,14 @@ local play = {}
 
 local Ball = require "entities.ball"
 local ball = Ball()
+
 local Peg = require "entities.peg"
 -- All of the pegs in the level
 local pegs = {}
+
+local Player = require "entities.player"
+local player = Player()
+
 local background = BackGround()
 local blueBucket = Bucketz(250)
 
@@ -35,6 +40,7 @@ function play:update(dt)
       if normal:len() < ballAndPegSize then
          ball:bounce(normal, dt)
          ball:attachPeg(peg)
+         player.score = player.score + 100
          table.remove(pegs, i)
          break
       end
