@@ -13,7 +13,7 @@ local Peg = require "entities.peg"
 -- All of the pegs in the level
 local pegs = {}
 local background = BackGround()
-local blueBucket = Bucketz(Vector(0, Constants.SCREEN_HEIGHT))
+local blueBucket = Bucketz(250)
 
 
 function play:enter()

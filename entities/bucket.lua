@@ -8,8 +8,8 @@ local Constants = require "utils.constants"
 -------- Class ----------
 -------------------------
 local Bucket = Class {
-	init = function(self, locat, colour)
-		self.location = locat
+	init = function(self, xCoord, colour)
+		self.location = xCoord 
 		self.color = colour
 	end,
 }
@@ -24,7 +24,10 @@ end
 --Draw
 --------------------------
 function Bucket:draw()
-	love.graphics.rectangle("fill", self.location.x, self.location.y, 40,80)
+	love.graphics.rectangle("fill", 
+		self.location-(Constants.BUCKET_WIDTH/2), 
+		Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT,
+		Constants.BUCKET_WIDTH, Constants.BUCKET_HEIGHT)
 end
 
 
