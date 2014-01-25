@@ -50,11 +50,8 @@ function Ball:draw()
    love.graphics.setColor(100, 150, 200)
    love.graphics.circle("fill", self.position.x, self.position.y, self:getRadius())
 
-   love.graphics.setColor(250, 150, 100)
    for i, peg in ipairs(self.attachedPegs) do
-      position = self.position + peg.position
-
-      love.graphics.circle("fill", position.x, position.y, Constants.PEG_RADIUS)
+      peg:drawAtPosition(self.position + peg.position)
    end
 end
 
