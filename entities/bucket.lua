@@ -9,12 +9,17 @@ local Constants = require "utils.constants"
 -------------------------
 local Bucket = Class {
 	init = function(self, colour)
-		self.location = xCoord 
+		self.location = 0  
 		self.color = colour
 		self.swing = .5
 		self.positive = true
+
+		self.leftDot = 0
+		self.rightDot = 0;
 	end,
 }
+
+local sideRadius = Constants.BUCKET_WALL 
 
 --Update
 --------------------------
@@ -34,7 +39,10 @@ function Bucket:update(dt)
 
 	self.location = Utils.numberInterpolate(0, 0, Constants.SCREEN_WIDTH,
 		self.swing)
+	self.rightDot = self.location + Constants.BUCKET_WIDTH/2 + sideRadius
+	self.leftDot = self.location - Constants.BUCKET_WIDTH/2 - sideRadius
 end
+
 
 
 --Draw

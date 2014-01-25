@@ -8,5 +8,6 @@ return {
    PEG_RADIUS = 10,
 
    BUCKET_HEIGHT = 60,
-   BUCKET_WIDTH = 80
+   BUCKET_WIDTH = 80,
+   BUCKET_WALL = 3
 }
