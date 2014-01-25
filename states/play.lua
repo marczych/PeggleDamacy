@@ -34,10 +34,12 @@ function Play:update(dt)
    for i, peg in ipairs(pegs) do
       normal = ball.position - peg.position
       if normal:len() < ballAndPegSize then
-         ball:bounce(normal, dt)
          ball:attachPeg(peg)
-         score = score + 100
+         ball:bounce(normal, dt)
+
          table.remove(pegs, i)
+
+         score = score + 100
          break
       end
    end
@@ -62,6 +64,10 @@ function Play:keypressed(key, unicode)
    if key == 'r' then
       Play.enter()
    end
+end
+
+function Play:mousepressed(x, y, button)
+   ball:propelTowards(Vector(x, y), 1000)
 end
 
 return Play
