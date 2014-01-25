@@ -9,11 +9,18 @@ local play = {}
 
 local Ball = require "entities.ball"
 local ball = Ball()
+local Peg = require "entities.peg"
+-- All of the pegs in the level
+local pegs = {}
 local background = BackGround()
 local blueBucket = Bucketz(Vector(0, Constants.SCREEN_HEIGHT))
 
 
 function play:enter()
+-- Initialize all of the pegs
+for i = 1, 50 do
+   pegs[i] = Peg()
+end
 	
 end
 
@@ -30,6 +37,10 @@ function play:draw()
    background:draw()
    ball:draw()
    blueBucket:draw()
+
+   for i = 1, 50 do
+      pegs[i]:draw()
+   end
 end
 
 function play:keypressed(key, unicode)

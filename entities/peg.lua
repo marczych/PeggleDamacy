@@ -1,8 +1,9 @@
 Peg = Class{
    init = function(self)
-      self.location = Utils.randomLocation()
-      self.wavelength = Utils.randomWavelength()
-      self.color = Utils.wavelengthToRGB(wavelength)
+      -- Spawn pegs in a random Vector location
+      self.position = Utils.randomPegLocation()
+      -- self.wavelength = Utils.randomWavelength()
+      -- self.color = Utils.wavelengthToRGB(wavelength)
    end
 }
 
@@ -18,6 +19,9 @@ end
 
 -- Draw the peg on screen!
 function Peg:draw()
+   -- TODO: use self.color instead
+   love.graphics.setColor(250, 150, 100)
+   love.graphics.circle("fill", self.position.x, self.position.y, Constants.PEG_RADIUS)
 end
 
 -- Used for idiomatic module loading.

@@ -1,20 +1,31 @@
 local Utils = {}
+-- Make sure we get "real random" numbers
+math.randomseed(os.time())
 
-function Utils.clamp (x, lower, upper)
+-- Don't allow pegs to spawn in the top 20%, bottom 5%, or in the
+-- left 5% or right 5% of the screen. Return a random Vector of x & y
+-- coordinates to spawn the peg.
+-- TODO: don't allow pegs to spawn in a location where another peg already exists.
+-- Maybe this should go into the place where we're spawning them instead?
+function Utils.randomPegLocation()
+   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95), 
+   math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
+end
+
+function Utils.clamp(x, lower, upper)
    return math.max(lower, math.min(upper, x))
 end
 
-function Utils.randomWavelength ()
+function Utils.randomWavelength()
    return math.floor(math.random(380, 780))
 end
-
 
 function Utils.numberInterpolate(oldValue, min, max, u)
 	return oldValue + (max-min)*u
 end
 --TODO vector interpolates
 
-function Utils.wavelengthToRGB (wavelength)
+function Utils.wavelengthToRGB(wavelength)
    local r, g, b
 
    wavelength = Utils.clamp(wavelength, 380, 780)
