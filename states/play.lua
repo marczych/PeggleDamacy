@@ -62,6 +62,11 @@ function Play:update(dt)
             break
          end
       end
+
+      if ball.position.y > Constants.SCREEN_HEIGHT - ball:getRadius() then
+         -- Take the ball out of play because it hit the bottom.
+         ball = nil
+      end
    end
 
    hud:update(dt)

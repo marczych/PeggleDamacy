@@ -11,10 +11,6 @@ local Ball = Class{
 function Ball:update(dt)
    self:updatePosition(dt)
 
-   if self.position.y > Constants.SCREEN_HEIGHT - self:getRadius() then
-      self:bounce(Vector(0, -1), dt)
-   end
-
    if self.position.y < self:getRadius() + Constants.HUD_HEIGHT then
       self:bounce(Vector(0, 1), dt)
    end
