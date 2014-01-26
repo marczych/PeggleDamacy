@@ -1,3 +1,5 @@
+local imgLeft = love.graphics.newImage("assets/images/hudleft.png")
+
 local Hud = Class{
    init = function(self)
       self.spectrumColors = Utils.calculateSpectrumColors()
@@ -11,12 +13,14 @@ function Hud:update(dt)
 end
 
 function Hud:draw(score, ballsRemaining, availableSpectra)
-	love.graphics.setColor(0, 0, 0)
-	love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
+	--love.graphics.setColor(0, 0, 0)
+	--love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
 
+   
 	love.graphics.setColor(255, 255, 255)
-   love.graphics.print('Balls: ' .. ballsRemaining, 15, 15)
-   love.graphics.print('Score: ' .. score, 15, 55)
+   love.graphics.draw(imgLeft,0,0)
+   love.graphics.print('Balls: ' .. ballsRemaining, 75, 15)
+   love.graphics.print('Score: ' .. score, 75, 55)
 
    local spectrumHeight = Constants.HUD_HEIGHT / 2
    local x0 = (Constants.SCREEN_WIDTH - 10) -
