@@ -19,8 +19,8 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
    
 	love.graphics.setColor(255, 255, 255)
    love.graphics.draw(imgLeft,0,0)
-   love.graphics.print('Balls: ' .. ballsRemaining, 75, 15)
-   love.graphics.print('Score: ' .. score, 75, 55)
+   love.graphics.print('Balls: ' .. ballsRemaining, 75, 25)
+   love.graphics.print('Score: ' .. score, 35, 55)
 
    -- Draw the available spectrum segments
    local spectrumHeight = Constants.HUD_HEIGHT / 2
