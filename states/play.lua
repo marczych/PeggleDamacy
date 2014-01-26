@@ -16,6 +16,7 @@ local availableSpectrum
 local ballsRemaining
 local trailParticles
 local lastTrailParticleTime
+local flash
 
 local Play = {}
 local pegsCollected
@@ -55,6 +56,9 @@ function Play:update(dt)
    -- Slow the whole game down a bit
    -- Making the ball travel a little slower makes the game more suspenseful and fun
    dt = dt * 0.8
+
+   --Flash reset
+   flash = false
 
    -- Slow motion.
    if love.keyboard.isDown(" ") then
@@ -106,6 +110,7 @@ function Play:update(dt)
          score = score + 1000
          ballsRemaining = ballsRemaining + 1
          ball = nil
+	 flash = true
       elseif ball and ball.position.y > Constants.SCREEN_HEIGHT + ball:getRadius() then
          -- Take the ball out of play because it hit the bottom.
          ball = nil
@@ -144,6 +149,11 @@ function Play:draw()
 
    if cannon then
       cannon:draw()
+   end
+
+   if flash then
+      love.graphics.setColor(255,255,255)
+      love.graphics.rectangle("fill", 0,0,Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT)
    end
 
    for _, peg in pairs(pegs) do
