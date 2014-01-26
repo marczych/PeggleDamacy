@@ -25,4 +25,11 @@ function title:mousepressed(key, unicode)
    Gamestate.switch(States.instructions)
 end
 
+
+function title:keypressed(key, unicode)
+   Gamestate.switch(States.instructions)
+end
+
+
+
 return title
