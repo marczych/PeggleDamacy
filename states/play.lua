@@ -48,6 +48,11 @@ function Play:enter()
 end
 
 function Play:update(dt)
+   -- Slow motion.
+   if love.keyboard.isDown(" ") then
+      dt = dt / 4
+   end
+
    background:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
 
