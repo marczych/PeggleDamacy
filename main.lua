@@ -8,6 +8,7 @@ Class = require "hump.class"
 
 States = {
    title = require "states.title",
+   instructions = require "states.instructions",
    play = require "states.play",
    credits = require "states.credits"
 }

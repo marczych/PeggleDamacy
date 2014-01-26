@@ -2,7 +2,7 @@ local BackGround = require "entities.background"
 local background = BackGround()
 local Constants = require "utils.constants"
 
-local imgTitle = love.graphics.newImage("assets/images/title.png")
+local imgTitle = love.graphics.newImage("assets/images/instructions.png")
 
 local title = {}
 
@@ -22,7 +22,7 @@ function title:draw()
 end
 
 function title:mousepressed(key, unicode)
-   Gamestate.switch(States.instructions)
+   Gamestate.switch(States.play)
 end
 
 return title
