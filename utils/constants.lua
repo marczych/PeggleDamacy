@@ -22,6 +22,9 @@ return {
    BUCKET_RADIUS = 35,
 
    METER_OFFSET = 369,
+   
+   STARTING_LOWER_WAVELENGTH = 480,
+   STARTING_UPPER_WAVELENGTH = 580,
 
    -- The lowest visible wavelength.
    MIN_WAVELENGTH = 420,
