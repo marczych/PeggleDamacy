@@ -27,6 +27,7 @@ local Peg = Class{
       self.wavelength = Utils.randomWavelength()
       self.color = Utils.wavelengthToRGB(self.wavelength)
       self.spriteIndex = math.floor(math.random(#possibleSprites))
+      self.isCollectable = false
    end
 }
 
@@ -35,15 +36,27 @@ function Peg:draw(collectable)
 
    if collectable then
       love.graphics.print("*", self.position.x, self.position.y)
+      self.isCollectable = true
    end
 end
 
 -- Draw the peg on screen!
 function Peg:drawAtPosition(position)
+	if(self.isCollectable) then
+   		love.graphics.setColor(255,255,255)
+	else
+		love.graphics.setColor(150,150,150)
+	end
+   
+   love.graphics.circle("fill", position.x,
+   	position.y, 
+	Constants.PEG_RADIUS+5)
+   
    self:setPastellizedColor()
-   --love.graphics.circle("fill", position.x, position.y, Constants.PEG_RADIUS)
-   love.graphics.draw(possibleSprites[self.spriteIndex], position.x,
-   	position.y)
+   love.graphics.draw(possibleSprites[self.spriteIndex], 
+   	position.x-Constants.PEG_RADIUS*1.5,
+   	position.y-Constants.PEG_RADIUS*1.5)
+
 end
 
 --Pastellize the color w/o changing hue
