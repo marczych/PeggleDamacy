@@ -44,11 +44,32 @@ end
 
 -- Draw the peg on screen!
 function Peg:drawAtPosition(position)
-   -- TODO: use self.color instead
-   love.graphics.setColor(self.color.r, self.color.g, self.color.b)
+   self:setPastellizedColor()
    --love.graphics.circle("fill", position.x, position.y, Constants.PEG_RADIUS)
    love.graphics.draw(possibleSprites[self.spriteIndex], position.x,
    	position.y)
+end
+
+--Pastellize the color w/o changing hue
+function Peg:setPastellizedColor()
+	local pastelR
+	local pastelG
+	local pastelB
+	local delta
+	if(self.color.r > self.color.g and self.color.r > self.color.b) then
+		delta = 255-self.color.r
+	elseif(self.color.g > self.color.r and self.color.g > self.color.b) then
+		delta = 255-self.color.g
+	else
+		delta = 255-self.color.b
+	end
+
+	pastelR = self.color.r + delta
+	pastelG = self.color.g + delta 
+	pastelB = self.color.b + delta 
+	
+	love.graphics.setColor(pastelR, pastelG, pastelB)
+		
 end
 
 -- Used for idiomatic module loading.
