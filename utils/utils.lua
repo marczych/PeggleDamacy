@@ -2,15 +2,35 @@ local Utils = {}
 -- Make sure we get "real random" numbers
 math.randomseed(os.time())
 
--- Don't allow pegs to spawn in the top 20%, bottom 10%, or in the
+-- Don't allow pegs to spawn in the top 25%, bottom 10%, or in the
 -- left 5% or right 5% of the screen. Return a random Vector of x & y
 -- coordinates to spawn the peg.
--- TODO: don't allow pegs to spawn in a location where another peg already
--- exists? Or maybe this will be handled by pre-made maps.
-function Utils.randomPegLocation()
-   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95),
-    math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .90))
+function Utils.randomPegLocation(existingPegs)
+   potentialLocation = nil
+
+   -- Keep trying new positions as long as we haven't found a good one yet
+   while Utils.invalidPosition(potentialLocation, existingPegs) do
+      potentialLocation = Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95),
+      math.random(Constants.SCREEN_HEIGHT * .25, Constants.SCREEN_HEIGHT * .90))
+   end
+
+   return potentialLocation;
 end
+
+function Utils.invalidPosition(potentialLocation, existingPegs)
+   -- This is needed because of the way invalidPosition is written above
+   if potentialLocation == nil then
+      return true 
+   end
+
+   for i, peg in ipairs(existingPegs) do
+      if potentialLocation:dist(Vector(peg.position.x, peg.position.y)) < 40 then
+         return true
+      end
+   end
+   return false
+end
+
 
 -- Given a peg of a given wavelength, which section of the available
 -- spectrum can collect it? Return 1-indexed section, or Nil

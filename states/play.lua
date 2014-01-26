@@ -23,7 +23,9 @@ function Play:enter()
    pegs = {}
    -- Initialize all of the pegs
    for i = 1, Constants.NUM_STARTING_PEGS do
-      table.insert(pegs, Peg())
+      newPeg = Peg()
+      newPeg.position = Utils.randomPegLocation(pegs)
+      table.insert(pegs, newPeg)
    end
 
    score = 0
