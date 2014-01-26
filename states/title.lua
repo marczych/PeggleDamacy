@@ -1,5 +1,8 @@
 local BackGround = require "entities.background"
 local background = BackGround()
+local Constants = require "utils.constants"
+
+local imgTitle = love.graphics.newImage("assets/images/title.png")
 
 local title = {}
 
@@ -13,7 +16,8 @@ end
 
 function title:draw()
    background:draw()
-   love.graphics.print("Peggle Damacy!", 200, 200)
+   --love.graphics.print("Peggle Damacy!", 200, 200)
+   love.graphics.draw(imgTitle, Constants.SCREEN_WIDTH/8, 20)
 end
 
 function title:keypressed(key, unicode)
