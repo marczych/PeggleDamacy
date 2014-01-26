@@ -90,7 +90,7 @@ function Play:update(dt)
          end
       end
 
-      local len = ball.position - blueBucket:getLocation()
+      local len = ball.position - blueBucket:getCollisionLocation()
       if len:len() < ball:getRadius() + Constants.BUCKET_RADIUS then
          -- Collision between ball and bucket.
          score = score + 1000

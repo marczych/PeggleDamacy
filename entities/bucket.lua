@@ -1,5 +1,7 @@
 -------- Class ----------
 -------------------------
+local imgBucket = love.graphics.newImage("assets/images/bucket.png")
+
 local Bucket = Class {
 
    init = function(self, wavelengt)
@@ -42,6 +44,11 @@ function Bucket:getLocation()
 	Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT)
 end
 
+function Bucket:getCollisionLocation()
+	return Vector(self.location,
+	Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT+20)
+end
+
 
 --Draw
 --------------------------
@@ -50,10 +57,9 @@ function Bucket:draw()
    --TODO set color right
    love.graphics.setColor(255,255,255)
 
-   love.graphics.rectangle("fill",
-    self.location-(Constants.BUCKET_WIDTH/2),
-    Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT,
-    Constants.BUCKET_WIDTH, Constants.BUCKET_HEIGHT)
+    love.graphics.draw(imgBucket, self.location-(Constants.BUCKET_WIDTH/2),
+    	Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT)
+
 end
 
 
