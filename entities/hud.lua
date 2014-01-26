@@ -22,6 +22,7 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
    love.graphics.print('Balls: ' .. ballsRemaining, 75, 15)
    love.graphics.print('Score: ' .. score, 75, 55)
 
+   -- Draw the available spectrum segments
    local spectrumHeight = Constants.HUD_HEIGHT / 2
    local x0 = (Constants.SCREEN_WIDTH - 10) -
     (Constants.MAX_WAVELENGTH - Constants.MIN_WAVELENGTH)
