@@ -1,5 +1,6 @@
 local BallParticle = require "entities.ballparticle"
 local BackGround = require "entities.background"
+local Cannon = require "entities.cannon"
 local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
 local Peg = require "entities.peg"
@@ -38,6 +39,7 @@ function Play:enter()
 
    background = BackGround()
    blueBucket = Bucket(250, 40)
+   cannon = Cannon(pegs)
    hud = Hud()
    ball = nil
    ballsRemaining = Constants.NUM_STARTING_BALLS
@@ -99,9 +101,14 @@ function Play:update(dt)
 
          if ballsRemaining == 0 then
             Gamestate.switch(States.credits)
+         else
+            cannon = Cannon(pegs)
          end
-         
       end
+   end
+
+   if cannon then
+      cannon:update(dt)
    end
 
    hud:update(dt)
@@ -120,6 +127,10 @@ function Play:draw()
 
    if ball then
       ball:draw()
+   end
+
+   if cannon then
+      cannon:draw()
    end
 
    for _, peg in pairs(pegs) do
@@ -154,10 +165,11 @@ function Play:mousepressed(x, y, button)
    if ball then
       ball:propelTowards(Vector(x, y), 1000)
    else
-      position = Vector(Constants.SCREEN_WIDTH / 2, Constants.HUD_HEIGHT + 10)
-
-      ball = Ball(position, (Vector(x, y) - position):normalized() * 500)
       ballsRemaining = ballsRemaining - 1
+      if (cannon) then
+         ball = Ball(cannon.position, cannon.power)
+         cannon = nil
+      end
    end
 end
 
