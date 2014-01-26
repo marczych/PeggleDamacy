@@ -110,9 +110,9 @@ function Play:update(dt)
       end
 
       local len = ball.position - blueBucket:getCollisionLocation()
+      -- Collision between ball and bucket.
       if len:len() < ball:getRadius() + Constants.BUCKET_RADIUS then
-         -- Collision between ball and bucket.
-         score = score + 1000
+         score = score + Constants.BUCKET_SCORE 
          ballsRemaining = ballsRemaining + 1
          ball = nil
 	 flash = true
@@ -195,7 +195,7 @@ function Play:mousepressed(x, y, button)
       if powerupCharges >= 1 then
          powerupCharges = powerupCharges - 1
 
-         ball:propelTowards(Vector(x, y), 1000)
+         ball:propelTowards(Vector(x, y), Constants.POWERUP_STRENGTH)
       end
 
    -- Otherwise, fire a ball
