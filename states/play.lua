@@ -58,6 +58,8 @@ function Play:update(dt)
                table.remove(pegs, i)
                score = score + 100
             end
+            ball:bounce(normal, dt)
+            break
          end
       end
    end
