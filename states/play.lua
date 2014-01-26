@@ -50,9 +50,13 @@ function Play:enter()
 end
 
 function Play:update(dt)
+   -- Slow the whole game down a bit
+   -- Making the ball travel a little slower makes the game more suspenseful and fun
+   dt = dt * 0.8
+
    -- Slow motion.
    if love.keyboard.isDown(" ") then
-      dt = dt / 4
+      dt = dt / 5
    end
 
    background:update(dt)
