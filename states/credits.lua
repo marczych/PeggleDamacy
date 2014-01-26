@@ -6,14 +6,14 @@ local credits = {}
 local pegCount
 local score
 
-function credits:enter(self, count, totalScore)
+function credits:enter(self, pegsCollected, totalScore)
    -- Create and set a default 55 point font
    titleFont = love.graphics.newFont(55)
 
    -- Create and set a default 30 point font
    creditFont = love.graphics.newFont(30)
 
-   pegCount = count
+   pegCount = pegsCollected
    score = totalScore
 end
 
@@ -31,7 +31,7 @@ function credits:draw()
    love.graphics.setFont(titleFont)
    love.graphics.setColor(50, 200, 150)
    percentage = pegCount / Constants.NUM_STARTING_PEGS
-   if percentage < .75 then
+   if percentage > .75 then
       love.graphics.print("You Win!", 75, Constants.SCREEN_HEIGHT * .4)
    else
       love.graphics.print("You Lose!", 75, Constants.SCREEN_HEIGHT * .4)
@@ -42,7 +42,7 @@ function credits:draw()
    love.graphics.setFont(creditFont)
    love.graphics.setColor(50, 200, 150)
 
-   love.graphics.print("You collected:\n" .. 65 - pegCount .. " out of " .. 65 .. " pegs", 75, 500)
+   love.graphics.print("You collected:\n" .. pegCount .. " out of " .. 65 .. " pegs", 75, 500)
 
    love.graphics.print("Marc Zych!", 500, 350)
    love.graphics.print("Katherine Blizard!", 550, 400)

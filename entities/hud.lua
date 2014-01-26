@@ -13,7 +13,7 @@ local Hud = Class{
 function Hud:update(dt)
 end
 
-function Hud:draw(score, ballsRemaining, availableSpectra)
+function Hud:draw(score, ballsRemaining, powerupCharges, availableSpectra)
 	--love.graphics.setColor(0, 0, 0)
 	--love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
 
@@ -24,8 +24,10 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
 
    -- Draw the HUD text
 	love.graphics.setColor(0, 0, 0)
-   love.graphics.print('Balls: ' .. ballsRemaining, 75, 25)
-   love.graphics.print('Score: ' .. score, 45, 55)
+   love.graphics.print('Balls: ' .. ballsRemaining, 85, 15)
+   love.graphics.print('Charges: ' .. powerupCharges, 60, 35)
+   -- Uneven numbers, I'm sorry, but it looks better.
+   love.graphics.print('Score: ' .. score, 45, 57)
 
    -- Draw the Cannon
    love.graphics.setColor(255,255,255)

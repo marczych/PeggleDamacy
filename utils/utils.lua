@@ -37,7 +37,6 @@ function Utils.invalidPosition(potentialLocation, existingPegs)
    return false
 end
 
-
 -- Given a peg of a given wavelength, which section of the available
 -- spectrum can collect it? Return 1-indexed section, or Nil
 function Utils.getSection(pegWavelength, availableSpectrum)

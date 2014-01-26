@@ -14,6 +14,7 @@ local score
 local hud
 local availableSpectrum
 local ballsRemaining
+local powerupCharges
 local trailParticles
 local lastTrailParticleTime
 local flash
@@ -31,6 +32,7 @@ function Play:enter()
    end
 
    score = 0
+   powerupCharges = 0
    -- A set of lower and upper wavelength bounds that define what color
    -- pegs the player can collect
    -- Start with the greens.
@@ -49,7 +51,7 @@ function Play:enter()
    ballsRemaining = Constants.NUM_STARTING_BALLS
    trailParticles = {}
    lastTrailParticleTime = 0
-   pegsCollected = Constants.NUM_STARTING_PEGS
+   pegsCollected = 0
 end
 
 function Play:update(dt)
@@ -66,7 +68,7 @@ function Play:update(dt)
    end
 
    background:update(dt)
-   blueBucket:update(dt)  --Test bucket. ok to remove and do something better
+   blueBucket:update(dt)  --TODO: Test bucket. ok to remove and do something better
 
    for i, particle in ipairs(trailParticles) do
       if particle:isDead(time) then
@@ -93,11 +95,14 @@ function Play:update(dt)
             if section then
                ball:attachPeg(peg)
                pegsCollectedThisBall = pegsCollectedThisBall + 1;
-               pegsCollected = pegsCollected - 1
+               pegsCollected = pegsCollected + 1
                -- Increase the spectrum in the section of the collected peg's wavelength
                Utils.increaseSpectrumSection(section, availableSpectrum)
+
                table.remove(pegs, i)
                score = score + 100 + (25 * pegsCollectedThisBall)
+               -- Give another powerup charge for every 10th peg collected
+               powerupCharges = powerupCharges + 0.1
             end
             ball:bounce(normal, dt)
             break
@@ -160,7 +165,7 @@ function Play:draw()
       peg:draw(Utils.getSection(peg.wavelength, availableSpectrum))
    end
 
-   hud:draw(score, ballsRemaining, availableSpectrum)
+   hud:draw(score, ballsRemaining, powerupCharges, availableSpectrum)
 end
 
 function Play:keypressed(key, unicode)
@@ -187,7 +192,11 @@ end
 function Play:mousepressed(x, y, button)
    -- If a ball is already in play
    if ball then
-      ball:propelTowards(Vector(x, y), 1000)
+      if powerupCharges >= 1 then
+         powerupCharges = powerupCharges - 1
+
+         ball:propelTowards(Vector(x, y), 1000)
+      end
 
    -- Otherwise, fire a ball
    else
