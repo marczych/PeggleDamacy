@@ -78,7 +78,11 @@ function Play:update(dt)
       if ball and ball.position.y > Constants.SCREEN_HEIGHT + ball:getRadius() then
          -- Take the ball out of play because it hit the bottom.
          ball = nil
-         ballsRemaining = ballsRemaining - 1
+
+         if ballsRemaining == 0 then
+            Gamestate.switch(States.credits)
+         end
+         
       end
    end
 
@@ -107,14 +111,19 @@ function Play:keypressed(key, unicode)
       return
    end
 
+   if key == 'r' then
+      Play.enter()
+   end
+
+   -- TODO: remove these
+   if key == 'c' then
+      ballsRemaining = 0
+   end
    if key == 'j' then
       ball.velocity = ball.velocity * 1.1
    end
    if key == 'k' then
       ball.velocity = ball.velocity * 0.8
-   end
-   if key == 'r' then
-      Play.enter()
    end
 end
 
@@ -125,6 +134,7 @@ function Play:mousepressed(x, y, button)
       position = Vector(Constants.SCREEN_WIDTH / 2, Constants.HUD_HEIGHT + 10)
 
       ball = Ball(position, (Vector(x, y) - position):normalized() * 500)
+      ballsRemaining = ballsRemaining - 1
    end
 end
 
