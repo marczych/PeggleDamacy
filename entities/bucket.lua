@@ -1,9 +1,9 @@
 -------- Class ----------
 -------------------------
 local Bucket = Class {
-	init = function(self, colour)
+	init = function(self, wavelengt)
 		self.location = 0  
-		self.color = colour
+		self.wavelength = wavelengt 
 		self.swing = .5
 		self.positive = true
 
@@ -36,6 +36,10 @@ function Bucket:update(dt)
 	self.leftDot = self.location - Constants.BUCKET_WIDTH/2 - sideRadius
 end
 
+function Bucket:getLocation()
+	return Vector(self.location-(Constants.BUCKET_WIDTH/2),
+	Constants.SCREEN_HEIGHT-Constants.BUCKET_HEIGHT)
+end
 
 
 --Draw

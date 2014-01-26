@@ -13,6 +13,7 @@ return {
    BUCKET_HEIGHT = 60,
    BUCKET_WIDTH = 80,
    BUCKET_WALL = 3,
+   BUCKET_RADIUS = 20,
 
    -- The lowest visible wavelength.
    MIN_WAVELENGTH = 380,

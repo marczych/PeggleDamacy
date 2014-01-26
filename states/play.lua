@@ -33,7 +33,7 @@ function Play:enter()
    }
 
    background = BackGround()
-   blueBucket = Bucket(250)
+   blueBucket = Bucket(250, 40)
    hud = Hud()
    ball = nil
 end
@@ -62,6 +62,15 @@ function Play:update(dt)
             break
          end
       end
+
+     local len = ball.position - blueBucket:getLocation()
+     if(len:len() < ball:getRadius() + Constants.BUCKET_RADIUS) then
+     	--Collision between ball and bucket
+	--Utils.increaseSpectrumSection(blueBucket.wavelength, 
+		availableSpectrum)
+	score = score + 1000
+	--ballsRemaining = ballsRemaining + 1
+     end
    end
 
    hud:update(dt)
