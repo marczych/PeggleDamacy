@@ -23,7 +23,7 @@ local possibleSprites = {
 local Peg = Class{
    init = function(self)
       -- Spawn pegs in a random Vector location
-      self.position = Utils.randomPegLocation()
+      self.position = nil
       self.wavelength = Utils.randomWavelength()
       self.color = Utils.wavelengthToRGB(self.wavelength)
       self.spriteIndex = math.floor(math.random(#possibleSprites))
