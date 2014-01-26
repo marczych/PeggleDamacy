@@ -20,7 +20,7 @@ local possibleSprites = {
 	love.graphics.newImage("assets/images/peg19.png")
 }
 
-Peg = Class{
+local Peg = Class{
    init = function(self)
       -- Spawn pegs in a random Vector location
       self.position = Utils.randomPegLocation()

@@ -1,10 +1,3 @@
---Import your crap
-------------------------
-local Utils = require "utils.utils"
-local Class = require "hump.class"
-local Vector = require "hump.vector"
-local Constants = require "utils.constants"
-
 -------- Class ----------
 -------------------------
 local Bucket = Class {

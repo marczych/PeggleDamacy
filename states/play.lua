@@ -2,12 +2,14 @@ local BackGround = require "entities.background"
 local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
 local Peg = require "entities.peg"
+local Hud = require "entities.hud"
 
 local background
 local blueBucket
 local ball
 local pegs
 local score
+local hud
 
 local Play = {}
 
@@ -32,6 +34,7 @@ function Play:enter()
 
    background = BackGround()
    blueBucket = Bucket(250)
+   hud = Hud()
 end
 
 function Play:update(dt)
@@ -55,6 +58,8 @@ function Play:update(dt)
          break
       end
    end
+
+   hud:update(dt)
 end
 
 function Play:draw()
@@ -67,6 +72,8 @@ function Play:draw()
    for _, peg in pairs(pegs) do
       peg:draw()
    end
+
+   hud:draw()
 end
 
 function Play:keypressed(key, unicode)
