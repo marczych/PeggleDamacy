@@ -27,24 +27,18 @@ local Peg = Class{
       self.wavelength = Utils.randomWavelength()
       self.color = Utils.wavelengthToRGB(self.wavelength)
       self.spriteIndex = math.floor(math.random(#possibleSprites))
-      self.isCollectable = false
    end
 }
 
 function Peg:draw(collectable)
-   self:drawAtPosition(self.position)
-
-   if collectable then
-      love.graphics.print("*", self.position.x, self.position.y)
-      self.isCollectable = true
-   end
+   self:drawAtPosition(self.position, collectable)
 end
 
 -- Draw the peg on screen!
-function Peg:drawAtPosition(position)
-	if(self.isCollectable) then
-   		love.graphics.setColor(240,240,240)
-	else
+function Peg:drawAtPosition(position, collectable)
+   if collectable then
+      love.graphics.setColor(240,240,240)
+   else
 		love.graphics.setColor(150,150,150,150)
 	end
    
@@ -77,8 +71,9 @@ function Peg:setPastellizedColor()
 	pastelG = self.color.g + delta
 	pastelB = self.color.b + delta
 	local alpha = 255
-	if(self.isCollectable) then
-		alpha = 150
+
+	if collectable then
+      alpha = 150
 	end
 
 	love.graphics.setColor(pastelR, pastelG, pastelB)

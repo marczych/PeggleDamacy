@@ -1,6 +1,5 @@
 local Ball = Class{
    init = function(self, position, velocity)
-      print(position, velocity)
       self.radius = Constants.BALL_INITIAL_RADIUS
       self.position = position
       self.velocity = velocity
