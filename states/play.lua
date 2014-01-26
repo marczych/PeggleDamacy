@@ -10,6 +10,7 @@ local ball
 local pegs
 local score
 local hud
+local availableSpectrum
 
 local Play = {}
 
@@ -70,7 +71,7 @@ function Play:draw()
    blueBucket:draw()
 
    for _, peg in pairs(pegs) do
-      peg:draw()
+      peg:draw(Utils.canCollect(peg.wavelength, availableSpectrum))
    end
 
    hud:draw()

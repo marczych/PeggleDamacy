@@ -38,8 +38,12 @@ function Peg:update(dt)
 
 end
 
-function Peg:draw()
+function Peg:draw(collectable)
    self:drawAtPosition(self.position)
+
+   if collectable then
+      love.graphics.print("*", self.position.x, self.position.y)
+   end
 end
 
 -- Draw the peg on screen!
