@@ -49,6 +49,12 @@ function Play:update(dt)
    background:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
 
+   for i, particle in ipairs(trailParticles) do
+      if particle:isDead(time) then
+         table.remove(trailParticles, i)
+      end
+   end
+
    if ball then
       ball:update(dt)
 
@@ -56,7 +62,7 @@ function Play:update(dt)
 
       if (time - lastTrailParticleTime)*1000 > Constants.BALL_PARTICLES_QUANTUM_IN_MS then
          lastTrailParticleTime = time
-         table.insert(trailParticles, BallParticle(ball.position, time))
+         table.insert(trailParticles, BallParticle(ball.position, time, ball:getRadius()))
       end
 
       ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
@@ -110,10 +116,6 @@ function Play:draw()
    time = love.timer.getTime()
    for i, particle in ipairs(trailParticles) do
       particle:draw(time)
-
-      if particle:isDead(time) then
-         table.remove(trailParticles, i)
-      end
    end
 
    if ball then
