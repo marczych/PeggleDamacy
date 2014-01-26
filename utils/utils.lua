@@ -8,30 +8,26 @@ math.randomseed(os.time())
 -- TODO: don't allow pegs to spawn in a location where another peg already
 -- exists? Or maybe this will be handled by pre-made maps.
 function Utils.randomPegLocation()
-   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95), 
-   math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
+   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95),
+    math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
 end
 
 -- Given a peg of a given wavelength, which section of the available
 -- spectrum can collect it? Return 1-indexed section, or Nil
 function Utils.getSection(pegWavelength, availableSpectrum)
-   print ("peg wavelength: " .. pegWavelength)
    for i, spectrumSection in ipairs(availableSpectrum) do
-      print (spectrumSection.lower .. ", " .. spectrumSection.upper)
       if pegWavelength >= spectrumSection.lower and pegWavelength <= spectrumSection.upper then
-         print ("Collected!")
-         return i 
+         return i
       end
    end
-   print ("Bounced!")
-   return false 
+   return false
 end
 
 -- Increase the spectrum in the section of the collected peg's wavelength
 function Utils.increaseSpectrumSection(section, availableSpectrum)
 -- We assume the peg's wavelength is only inside one spectrum section.
          availableSpectrum[section].lower = availableSpectrum[section].lower - Constants.SPECTRUM_SECTION_INCREASE
-         availableSpectrum[section].upper = availableSpectrum[section].upper + Constants.SPECTRUM_SECTION_INCREASE 
+         availableSpectrum[section].upper = availableSpectrum[section].upper + Constants.SPECTRUM_SECTION_INCREASE
 end
 
 function Utils.clamp(x, lower, upper)
@@ -99,6 +95,14 @@ function Utils.wavelengthToRGB(wavelength)
       g = g * 255,
       b = b * 255
    }
+end
+
+function Utils.calculateSpectrumColors()
+   local colors = {}
+   for wv = Constants.MIN_WAVELENGTH, Constants.MAX_WAVELENGTH do
+      colors[wv] = Utils.wavelengthToRGB(wv)
+   end
+   return colors
 end
 
 return Utils
