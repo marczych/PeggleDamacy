@@ -86,10 +86,11 @@ function Play:update(dt)
             local section = Utils.getSection(peg.wavelength, availableSpectrum)
             if section then
                ball:attachPeg(peg)
+               pegsCollectedThisBall = pegsCollectedThisBall + 1;
                -- Increase the spectrum in the section of the collected peg's wavelength
                Utils.increaseSpectrumSection(section, availableSpectrum)
                table.remove(pegs, i)
-               score = score + 100
+               score = score + 100 + (25 * pegsCollectedThisBall)
             end
             ball:bounce(normal, dt)
             break
@@ -171,10 +172,14 @@ function Play:keypressed(key, unicode)
 end
 
 function Play:mousepressed(x, y, button)
+   -- If a ball is already in play
    if ball then
       ball:propelTowards(Vector(x, y), 1000)
+
+   -- Otherwise, fire a ball
    else
       ballsRemaining = ballsRemaining - 1
+      pegsCollectedThisBall = 0;
       if (cannon) then
          ball = Ball(cannon.position, cannon.power)
          cannon = nil
