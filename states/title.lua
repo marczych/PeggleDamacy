@@ -11,7 +11,7 @@ function title:enter()
 end
 
 function title:update(dt)
-
+	background:update(dt)
 end
 
 function title:draw()
