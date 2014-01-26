@@ -43,9 +43,9 @@ end
 -- Draw the peg on screen!
 function Peg:drawAtPosition(position)
 	if(self.isCollectable) then
-   		love.graphics.setColor(255,255,255)
+   		love.graphics.setColor(240,240,240)
 	else
-		love.graphics.setColor(150,150,150)
+		love.graphics.setColor(150,150,150,150)
 	end
    
    love.graphics.circle("fill", position.x,
@@ -76,6 +76,10 @@ function Peg:setPastellizedColor()
 	pastelR = self.color.r + delta
 	pastelG = self.color.g + delta
 	pastelB = self.color.b + delta
+	local alpha = 255
+	if(self.isCollectable) then
+		alpha = 150
+	end
 
 	love.graphics.setColor(pastelR, pastelG, pastelB)
 end
