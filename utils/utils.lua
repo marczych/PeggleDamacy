@@ -7,21 +7,17 @@ math.randomseed(os.time())
 -- coordinates to spawn the peg.
 -- TODO: don't allow pegs to spawn in a location where another peg already exists.
 function Utils.randomPegLocation()
-   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95), 
-   math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
+   return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95),
+    math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
 end
 
-function Utils.canCollect(pegWavelength, availableSpectrum) 
-   print ("peg wavelength: " .. pegWavelength)
+function Utils.canCollect(pegWavelength, availableSpectrum)
    for i, spectrumSection in ipairs(availableSpectrum) do
-      print (spectrumSection.lower .. ", " .. spectrumSection.upper)
       if pegWavelength >= spectrumSection.lower and pegWavelength <= spectrumSection.upper then
-         print ("Collected!")
          return true
       end
    end
-   print ("Bounced!")
-   return false 
+   return false
 end
 
 function Utils.clamp(x, lower, upper)
@@ -89,6 +85,14 @@ function Utils.wavelengthToRGB(wavelength)
       g = g * 255,
       b = b * 255
    }
+end
+
+function Utils.calculateSpectrumColors()
+   local colors = {}
+   for wv = Constants.MIN_WAVELENGTH, Constants.MAX_WAVELENGTH do
+      colors[wv] = Utils.wavelengthToRGB(wv)
+   end
+   return colors
 end
 
 return Utils

@@ -26,8 +26,7 @@ local Peg = Class{
       self.position = Utils.randomPegLocation()
       self.wavelength = Utils.randomWavelength()
       self.color = Utils.wavelengthToRGB(self.wavelength)
-      self.spriteIndex = math.floor( math.random(#possibleSprites))
-      
+      self.spriteIndex = math.floor(math.random(#possibleSprites))
    end
 }
 
@@ -60,20 +59,19 @@ function Peg:setPastellizedColor()
 	local pastelG
 	local pastelB
 	local delta
-	if(self.color.r > self.color.g and self.color.r > self.color.b) then
-		delta = 255-self.color.r
-	elseif(self.color.g > self.color.r and self.color.g > self.color.b) then
-		delta = 255-self.color.g
+	if self.color.r > self.color.g and self.color.r > self.color.b then
+		delta = 255 - self.color.r
+	elseif self.color.g > self.color.r and self.color.g > self.color.b then
+		delta = 255 - self.color.g
 	else
-		delta = 255-self.color.b
+		delta = 255 - self.color.b
 	end
 
 	pastelR = self.color.r + delta
-	pastelG = self.color.g + delta 
-	pastelB = self.color.b + delta 
-	
+	pastelG = self.color.g + delta
+	pastelB = self.color.b + delta
+
 	love.graphics.setColor(pastelR, pastelG, pastelB)
-		
 end
 
 -- Used for idiomatic module loading.

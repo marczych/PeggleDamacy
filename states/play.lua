@@ -23,12 +23,12 @@ function Play:enter()
 
    ball = Ball()
    score = 0
-   -- A set of lower and upper wavelength bounds that define what color 
+   -- A set of lower and upper wavelength bounds that define what color
    -- pegs the player can collect
    -- Start with the greens.
    availableSpectrum = {
       {
-         lower=450, 
+         lower=450,
          upper=600
       }
    }
@@ -44,7 +44,7 @@ function Play:update(dt)
    blueBucket:update(dt)  --Test bucket. ok to remove and do something better
 
    ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
-   
+
 
    for i, peg in ipairs(pegs) do
       normal = ball.position - peg.position
@@ -74,7 +74,7 @@ function Play:draw()
       peg:draw(Utils.canCollect(peg.wavelength, availableSpectrum))
    end
 
-   hud:draw()
+   hud:draw(score, availableSpectrum)
 end
 
 function Play:keypressed(key, unicode)
