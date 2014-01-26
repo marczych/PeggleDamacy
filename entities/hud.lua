@@ -1,18 +1,22 @@
 local Hud = Class{
    init = function(self)
       self.spectrumColors = Utils.calculateSpectrumColors()
+      -- Create and set a default 20 point font
+      font = love.graphics.newFont(20)
+      love.graphics.setFont(font)
    end
 }
 
 function Hud:update(dt)
 end
 
-function Hud:draw(score, availableSpectra)
+function Hud:draw(score, ballsRemaining, availableSpectra)
 	love.graphics.setColor(0, 0, 0)
 	love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
 
 	love.graphics.setColor(255, 255, 255)
-   love.graphics.print('Score: ' .. score, 10, 10)
+   love.graphics.print('Balls: ' .. ballsRemaining, 15, 15)
+   love.graphics.print('Score: ' .. score, 15, 55)
 
    local spectrumHeight = Constants.HUD_HEIGHT / 2
    local x0 = (Constants.SCREEN_WIDTH - 10) -

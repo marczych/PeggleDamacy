@@ -11,6 +11,7 @@ local pegs
 local score
 local hud
 local availableSpectrum
+local ballsRemaining
 
 local Play = {}
 
@@ -36,6 +37,7 @@ function Play:enter()
    blueBucket = Bucket(250)
    hud = Hud()
    ball = nil
+   ballsRemaining = Constants.NUM_STARTING_BALLS
 end
 
 function Play:update(dt)
@@ -66,6 +68,7 @@ function Play:update(dt)
       if ball.position.y > Constants.SCREEN_HEIGHT - ball:getRadius() then
          -- Take the ball out of play because it hit the bottom.
          ball = nil
+         ballsRemaining = ballsRemaining - 1
       end
    end
 
@@ -86,7 +89,7 @@ function Play:draw()
       peg:draw(Utils.getSection(peg.wavelength, availableSpectrum))
    end
 
-   hud:draw(score, availableSpectrum)
+   hud:draw(score, ballsRemaining, availableSpectrum)
 end
 
 function Play:keypressed(key, unicode)
