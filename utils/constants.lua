@@ -9,7 +9,7 @@ return {
 
    NUM_STARTING_PEGS = 50,
    NUM_STARTING_BALLS = 9,
-   PEG_RADIUS = 10,
+   PEG_RADIUS = 15,
 
    BUCKET_HEIGHT = 60,
    BUCKET_WIDTH = 80,
