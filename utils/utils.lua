@@ -25,9 +25,9 @@ end
 
 -- Increase the spectrum in the section of the collected peg's wavelength
 function Utils.increaseSpectrumSection(section, availableSpectrum)
--- We assume the peg's wavelength is only inside one spectrum section.
-         availableSpectrum[section].lower = availableSpectrum[section].lower - Constants.SPECTRUM_SECTION_INCREASE
-         availableSpectrum[section].upper = availableSpectrum[section].upper + Constants.SPECTRUM_SECTION_INCREASE
+   -- We assume the peg's wavelength is only inside one spectrum section.
+   availableSpectrum[section].lower = availableSpectrum[section].lower - Constants.SPECTRUM_SECTION_INCREASE
+   availableSpectrum[section].upper = availableSpectrum[section].upper + Constants.SPECTRUM_SECTION_INCREASE
 end
 
 function Utils.clamp(x, lower, upper)
@@ -39,7 +39,7 @@ function Utils.randomWavelength()
 end
 
 function Utils.numberInterpolate(oldValue, min, max, u)
-	return oldValue + (max-min)*u
+   return oldValue + (max-min)*u
 end
 --TODO vector interpolates
 
