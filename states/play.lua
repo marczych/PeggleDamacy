@@ -34,8 +34,8 @@ function Play:enter()
    -- Start with the greens.
    availableSpectrum = {
       {
-         lower=450,
-         upper=600
+         lower = Constants.STARTING_LOWER_WAVELENGTH,
+         upper = Constants.STARTING_UPPER_WAVELENGTH
       }
    }
 
