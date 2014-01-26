@@ -3,9 +3,8 @@ local imgLeft = love.graphics.newImage("assets/images/hudleft.png")
 local Hud = Class{
    init = function(self)
       self.spectrumColors = Utils.calculateSpectrumColors()
-      -- Create and set a default 20 point font
+      -- Create a default 20 point font
       font = love.graphics.newFont(20)
-      love.graphics.setFont(font)
    end
 }
 
@@ -16,7 +15,8 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
 	--love.graphics.setColor(0, 0, 0)
 	--love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
 
-   
+   -- Draw the HUD text
+   love.graphics.setFont(font)
 	love.graphics.setColor(255, 255, 255)
    love.graphics.draw(imgLeft,0,0)
    love.graphics.print('Balls: ' .. ballsRemaining, 75, 25)
@@ -24,14 +24,20 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
 
    -- Draw the available spectrum segments
    local spectrumHeight = Constants.HUD_HEIGHT / 2
-   local x0 = (Constants.SCREEN_WIDTH - 10) -
-    (Constants.MAX_WAVELENGTH - Constants.MIN_WAVELENGTH)
+   -- Start drawing the spectrum with enough space to fit all of it with a 15 px buffer
+   local x0 = (Constants.SCREEN_WIDTH - 15) - (Constants.MAX_WAVELENGTH - Constants.MIN_WAVELENGTH)
+   -- We'll draw the line starting at 1/4 of the HUD_HEIGHT
    local y1 = spectrumHeight / 2
+   -- And we'll draw upwards for half of the HUD_HEIGHT 
    local y2 = y1 + spectrumHeight
 
+   -- For each of the colors in the spectrum
    for wv, color in pairs(self.spectrumColors) do
-      local x = x0 + wv
+      
+      -- We'll draw this line of the spectrum at an offset from x0
+      local x = x0 + wv - Constants.MIN_WAVELENGTH
       love.graphics.setColor(color.r, color.g, color.b)
+      -- Actually draw the vertical line for this color
       love.graphics.line(x, y1, x, y2)
    end
 end
