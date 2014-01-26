@@ -45,13 +45,14 @@ function Play:update(dt)
 
    ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
    
-
    for i, peg in ipairs(pegs) do
       normal = ball.position - peg.position
       if normal:len() < ballAndPegSize then
-         if Utils.canCollect(peg.wavelength, availableSpectrum) then
+         local section = Utils.getSection(peg.wavelength, availableSpectrum)
+         if section then
             ball:attachPeg(peg)
-            -- TODO: Increase the availableSpectrum
+            -- Increase the spectrum in the section of the collected peg's wavelength
+            Utils.increaseSpectrumSection(section, availableSpectrum)
             table.remove(pegs, i)
             score = score + 100
          end
@@ -71,7 +72,7 @@ function Play:draw()
    blueBucket:draw()
 
    for _, peg in pairs(pegs) do
-      peg:draw(Utils.canCollect(peg.wavelength, availableSpectrum))
+      peg:draw(Utils.getSection(peg.wavelength, availableSpectrum))
    end
 
    hud:draw()
@@ -90,7 +91,7 @@ function Play:keypressed(key, unicode)
 end
 
 function Play:mousepressed(x, y, button)
-   ball:propelTowards(Vector(x, y), 1000)
+   ball:propelTowards(Vector(x, y), 1500)
 end
 
 return Play

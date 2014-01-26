@@ -5,23 +5,33 @@ math.randomseed(os.time())
 -- Don't allow pegs to spawn in the top 20%, bottom 5%, or in the
 -- left 5% or right 5% of the screen. Return a random Vector of x & y
 -- coordinates to spawn the peg.
--- TODO: don't allow pegs to spawn in a location where another peg already exists.
+-- TODO: don't allow pegs to spawn in a location where another peg already
+-- exists? Or maybe this will be handled by pre-made maps.
 function Utils.randomPegLocation()
    return Vector(math.random(Constants.SCREEN_WIDTH * .05, Constants.SCREEN_WIDTH * .95), 
    math.random(Constants.SCREEN_HEIGHT * .2, Constants.SCREEN_HEIGHT * .95))
 end
 
-function Utils.canCollect(pegWavelength, availableSpectrum) 
+-- Given a peg of a given wavelength, which section of the available
+-- spectrum can collect it? Return 1-indexed section, or Nil
+function Utils.getSection(pegWavelength, availableSpectrum)
    print ("peg wavelength: " .. pegWavelength)
    for i, spectrumSection in ipairs(availableSpectrum) do
       print (spectrumSection.lower .. ", " .. spectrumSection.upper)
       if pegWavelength >= spectrumSection.lower and pegWavelength <= spectrumSection.upper then
          print ("Collected!")
-         return true
+         return i 
       end
    end
    print ("Bounced!")
    return false 
+end
+
+-- Increase the spectrum in the section of the collected peg's wavelength
+function Utils.increaseSpectrumSection(section, availableSpectrum)
+-- We assume the peg's wavelength is only inside one spectrum section.
+         availableSpectrum[section].lower = availableSpectrum[section].lower - Constants.SPECTRUM_SECTION_INCREASE
+         availableSpectrum[section].upper = availableSpectrum[section].upper + Constants.SPECTRUM_SECTION_INCREASE 
 end
 
 function Utils.clamp(x, lower, upper)

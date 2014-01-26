@@ -17,5 +17,8 @@ return {
    -- The lowest visible wavelength.
    MIN_WAVELENGTH = 380,
    -- The highest visible wavelength.
-   MAX_WAVELENGTH = 780
+   MAX_WAVELENGTH = 780,
+
+   -- How much to increase a spectrum section by when collecting a peg
+   SPECTRUM_SECTION_INCREASE = 6
 }
