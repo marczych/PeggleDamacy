@@ -15,12 +15,15 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
 	--love.graphics.setColor(0, 0, 0)
 	--love.graphics.rectangle("fill", 0, 0, Constants.SCREEN_WIDTH, Constants.HUD_HEIGHT)
 
-   -- Draw the HUD text
+   -- Draw the HUD graphic
    love.graphics.setFont(font)
 	love.graphics.setColor(255, 255, 255)
    love.graphics.draw(imgLeft,0,0)
+
+   -- Draw the HUD text
+	love.graphics.setColor(0, 0, 0)
    love.graphics.print('Balls: ' .. ballsRemaining, 75, 25)
-   love.graphics.print('Score: ' .. score, 35, 55)
+   love.graphics.print('Score: ' .. score, 45, 55)
 
    -- Draw the available spectrum segments
    local spectrumHeight = Constants.HUD_HEIGHT / 2
