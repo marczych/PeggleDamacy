@@ -1,8 +1,9 @@
 local Ball = Class{
-   init = function(self)
+   init = function(self, position, velocity)
+      print(position, velocity)
       self.radius = Constants.BALL_INITIAL_RADIUS
-      self.position = Vector(Constants.SCREEN_WIDTH / 2, self.radius + Constants.HUD_HEIGHT + 1)
-      self.velocity = Vector(200, 0)
+      self.position = position
+      self.velocity = velocity
       self.attachedPegs = {}
    end
 }

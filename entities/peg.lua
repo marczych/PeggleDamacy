@@ -31,13 +31,6 @@ local Peg = Class{
    end
 }
 
--- Update everything about the peg
-function Peg:update(dt)
-   -- Don't think this is really necessary.
-   self.time = self.time + dt
-
-end
-
 function Peg:draw(collectable)
    self:drawAtPosition(self.position)
 

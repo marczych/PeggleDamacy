@@ -15,15 +15,15 @@ end
 -- Given a peg of a given wavelength, which section of the available
 -- spectrum can collect it? Return 1-indexed section, or Nil
 function Utils.getSection(pegWavelength, availableSpectrum)
-   print ("peg wavelength: " .. pegWavelength)
+   -- print ("peg wavelength: " .. pegWavelength)
    for i, spectrumSection in ipairs(availableSpectrum) do
-      print (spectrumSection.lower .. ", " .. spectrumSection.upper)
+      -- print (spectrumSection.lower .. ", " .. spectrumSection.upper)
       if pegWavelength >= spectrumSection.lower and pegWavelength <= spectrumSection.upper then
-         print ("Collected!")
+         -- print ("Collected!")
          return i 
       end
    end
-   print ("Bounced!")
+   -- print ("Bounced!")
    return false 
 end
 
