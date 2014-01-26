@@ -26,9 +26,9 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
    local spectrumHeight = Constants.HUD_HEIGHT / 2
    -- Start drawing the spectrum with enough space to fit all of it with a 15 px buffer
    local x0 = (Constants.SCREEN_WIDTH - 15) - (Constants.MAX_WAVELENGTH - Constants.MIN_WAVELENGTH)
-   -- We'll draw the line starting at 1/4 of the HUD_HEIGHT
-   local y1 = spectrumHeight / 2
-   -- And we'll draw upwards for half of the HUD_HEIGHT 
+   -- We'll draw the line starting close to the top 
+   local y1 = spectrumHeight /6 
+   -- And we'll draw downwards for half of the HUD_HEIGHT 
    local y2 = y1 + spectrumHeight
 
    -- For each of the colors in the spectrum
@@ -36,7 +36,11 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
       
       -- We'll draw this line of the spectrum at an offset from x0
       local x = x0 + wv - Constants.MIN_WAVELENGTH
-      love.graphics.setColor(color.r, color.g, color.b)
+      if(Utils.getSection(wv, availableSpectra) == false) then
+	    love.graphics.setColor(128,128,128)
+	else
+	    love.graphics.setColor(color.r, color.g, color.b)
+	end
       -- Actually draw the vertical line for this color
       love.graphics.line(x, y1, x, y2)
    end
