@@ -88,22 +88,20 @@ function Play:update(dt)
       local len = ball.position - blueBucket:getLocation()
       if len:len() < ball:getRadius() + Constants.BUCKET_RADIUS then
          -- Collision between ball and bucket.
-         -- Utils.increaseSpectrumSection(blueBucket.wavelength,
-         --		availableSpectrum)
          score = score + 1000
          ballsRemaining = ballsRemaining + 1
          ball = nil
-      end
-      
-      if ball and ball.position.y > Constants.SCREEN_HEIGHT + ball:getRadius() then
+      elseif ball and ball.position.y > Constants.SCREEN_HEIGHT + ball:getRadius() then
          -- Take the ball out of play because it hit the bottom.
          ball = nil
 
          if ballsRemaining == 0 then
             Gamestate.switch(States.credits)
-         else
-            cannon = Cannon(pegs)
          end
+      end
+
+      if not ball then
+         cannon = Cannon(pegs)
       end
    end
 
