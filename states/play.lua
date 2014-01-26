@@ -1,3 +1,4 @@
+local BallParticle = require "entities.ballparticle"
 local BackGround = require "entities.background"
 local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
@@ -12,6 +13,8 @@ local score
 local hud
 local availableSpectrum
 local ballsRemaining
+local trailParticles
+local lastTrailParticleTime
 
 local Play = {}
 
@@ -38,6 +41,8 @@ function Play:enter()
    hud = Hud()
    ball = nil
    ballsRemaining = Constants.NUM_STARTING_BALLS
+   trailParticles = {}
+   lastTrailParticleTime = 0
 end
 
 function Play:update(dt)
@@ -46,6 +51,13 @@ function Play:update(dt)
 
    if ball then
       ball:update(dt)
+
+      time = love.timer.getTime()
+
+      if (time - lastTrailParticleTime)*1000 > Constants.BALL_PARTICLES_QUANTUM_IN_MS then
+         lastTrailParticleTime = time
+         table.insert(trailParticles, BallParticle(ball.position, time))
+      end
 
       ballAndPegSize = ball:getRadius() + Constants.PEG_RADIUS
 
@@ -94,6 +106,15 @@ function Play:draw()
 
    background:draw()
    blueBucket:draw()
+
+   time = love.timer.getTime()
+   for i, particle in ipairs(trailParticles) do
+      particle:draw(time)
+
+      if particle:isDead(time) then
+         table.remove(trailParticles, i)
+      end
+   end
 
    if ball then
       ball:draw()
