@@ -21,7 +21,7 @@ function title:draw()
    love.graphics.draw(imgTitle, Constants.SCREEN_WIDTH/8, 20)
 end
 
-function title:keypressed(key, unicode)
+function title:mousepressed(key, unicode)
    Gamestate.switch(States.play)
 end
 
