@@ -1,5 +1,6 @@
 local imgLeft = love.graphics.newImage("assets/images/hudleft.png")
 local imgCannon = love.graphics.newImage("assets/images/cannon.png")
+local imgMeter = love.graphics.newImage("assets/images/meter.png")
 
 local Hud = Class{
    init = function(self)
@@ -52,6 +53,11 @@ function Hud:draw(score, ballsRemaining, availableSpectra)
       -- Actually draw the vertical line for this color
       love.graphics.line(x, y1, x, y2)
    end
+
+   --Now draw the spectrum's meter
+   love.graphics.setColor(255,255,255)
+   love.graphics.draw(imgMeter, 
+   	Constants.SCREEN_WIDTH-Constants.METER_OFFSET, 0)
 end
 
 return Hud

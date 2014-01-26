@@ -21,6 +21,8 @@ return {
    BUCKET_WALL = 3,
    BUCKET_RADIUS = 35,
 
+   METER_OFFSET = 369,
+
    -- The lowest visible wavelength.
    MIN_WAVELENGTH = 420,
    -- The highest visible wavelength.
