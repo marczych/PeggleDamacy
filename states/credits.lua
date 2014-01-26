@@ -1,5 +1,6 @@
 local BackGround = require "entities.background"
 local background = BackGround()
+local imgTitle = love.graphics.newImage("assets/images/endtitle.png")
 
 local credits = {}
 
@@ -19,9 +20,10 @@ function credits:draw()
    background:draw()
 
    -- Use the larger title font 
-   love.graphics.setFont(titleFont)
-   love.graphics.setColor(250, 105, 240)
-   love.graphics.print("Peggle Damacy!", 310, Constants.SCREEN_HEIGHT * .2)
+   --love.graphics.setFont(titleFont)
+   love.graphics.setColor(200, 255, 200)
+   --love.graphics.print("Peggle Damacy!", 310, Constants.SCREEN_HEIGHT * .2)
+   love.graphics.draw(imgTitle, 0, 0)
 
    -- Use the credit font
    love.graphics.setFont(creditFont)
