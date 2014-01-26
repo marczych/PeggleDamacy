@@ -1,14 +1,25 @@
+local BallParticle = require "entities.ballparticle"
+
 local Ball = Class{
    init = function(self, position, velocity)
       self.radius = Constants.BALL_INITIAL_RADIUS
       self.position = position
       self.velocity = velocity
       self.attachedPegs = {}
+      self.trailParticles = {}
+      self.lastTrailParticleTime = 0
    end
 }
 
 function Ball:update(dt)
    self:updatePosition(dt)
+
+   time = love.timer.getTime()
+
+   if (time - self.lastTrailParticleTime)*1000 > Constants.BALL_PARTICLES_QUANTUM_IN_MS then
+      self.lastTrailParticleTime = time
+      table.insert(self.trailParticles, BallParticle(self.position, time))
+   end
 
    if self.position.y < self:getRadius() + Constants.HUD_HEIGHT then
       self:bounce(Vector(0, 1), dt)
@@ -52,6 +63,15 @@ function Ball:propelTowards(position, intensity)
 end
 
 function Ball:draw()
+   time = love.timer.getTime()
+   for i, particle in ipairs(self.trailParticles) do
+      particle:draw(time)
+
+      if particle:isDead(time) then
+         table.remove(self.trailParticles, i)
+      end
+   end
+
    love.graphics.setColor(100, 150, 200)
    love.graphics.circle("fill", self.position.x, self.position.y, self:getRadius())
 
