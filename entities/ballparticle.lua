@@ -8,7 +8,7 @@ BallParticle = Class{
 function BallParticle:draw(time)
    percentGone = self:getTimeRemaining(time) / Constants.BALL_PARTICLE_LIFE_TIME_IN_MS
 
-   love.graphics.setColor(255, 255, 255, math.max(math.min(percentGone, 1), 0) * 255)
+   love.graphics.setColor(Utils.randomSparkleColorValue(), Utils.randomSparkleColorValue(), Utils.randomSparkleColorValue(), math.max(math.min(percentGone, 1), 0) * 255)
    love.graphics.circle("fill", self.position.x, self.position.y, Constants.BALL_PARTICLE_RADIUS)
 end
 

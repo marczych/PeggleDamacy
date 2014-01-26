@@ -2,6 +2,12 @@ local Utils = {}
 -- Make sure we get "real random" numbers
 math.randomseed(os.time())
 
+-- It's not really random. We want the sparkles to be somewhat bright
+-- so we don't allow low values.
+function Utils.randomSparkleColorValue()
+   return math.random(60, 255)
+end
+
 -- Don't allow pegs to spawn in the top 25%, bottom 10%, or in the
 -- left 5% or right 5% of the screen. Return a random Vector of x & y
 -- coordinates to spawn the peg.
