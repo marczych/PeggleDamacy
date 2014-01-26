@@ -18,6 +18,7 @@ local trailParticles
 local lastTrailParticleTime
 
 local Play = {}
+local pegsCollected
 
 function Play:enter()
    pegs = {}
@@ -47,6 +48,7 @@ function Play:enter()
    ballsRemaining = Constants.NUM_STARTING_BALLS
    trailParticles = {}
    lastTrailParticleTime = 0
+   pegsCollected = Constants.NUM_STARTING_PEGS
 end
 
 function Play:update(dt)
@@ -87,6 +89,7 @@ function Play:update(dt)
             if section then
                ball:attachPeg(peg)
                pegsCollectedThisBall = pegsCollectedThisBall + 1;
+               pegsCollected = pegsCollected - 1
                -- Increase the spectrum in the section of the collected peg's wavelength
                Utils.increaseSpectrumSection(section, availableSpectrum)
                table.remove(pegs, i)
@@ -108,7 +111,7 @@ function Play:update(dt)
          ball = nil
 
          if ballsRemaining == 0 then
-            Gamestate.switch(States.credits)
+            Gamestate.switch(States.credits, pegsCollected, score)
          end
       end
 
