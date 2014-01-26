@@ -22,10 +22,10 @@ return {
    BUCKET_RADIUS = 35,
 
    -- The lowest visible wavelength.
-   MIN_WAVELENGTH = 380,
+   MIN_WAVELENGTH = 420,
    -- The highest visible wavelength.
-   MAX_WAVELENGTH = 780,
+   MAX_WAVELENGTH = 700,
 
    -- How much to increase a spectrum section by when collecting a peg
-   SPECTRUM_SECTION_INCREASE = 6
+   SPECTRUM_SECTION_INCREASE = 2.5 
 }
