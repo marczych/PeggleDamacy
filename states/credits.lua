@@ -24,11 +24,8 @@ function credits:draw()
    love.graphics.setColor(0, 40, 60)
    background:draw()
 
-   -- Use the larger title font
-   --love.graphics.setFont(titleFont)
    love.graphics.setColor(200, 255, 200)
-   --love.graphics.print("Peggle Damacy!", 310, Constants.SCREEN_HEIGHT * .2)
-   love.graphics.draw(imgTitle, 0, 0)
+   love.graphics.draw(imgTitle, Constants.SCREEN_WIDTH/8 , 0)
 
    -- Use the larger title font
    love.graphics.setFont(titleFont)
