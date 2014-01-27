@@ -5,11 +5,13 @@ local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
 local Peg = require "entities.peg"
 local Hud = require "entities.hud"
+local Sound = require "sound"
 
 local background
 local blueBucket
 local ball
 local pegs
+local sound
 local score
 local hud
 local availableSpectrum
@@ -52,6 +54,8 @@ function Play:enter()
    trailParticles = {}
    lastTrailParticleTime = 0
    pegsCollected = 0
+   sound = Sound()
+   sound.playGameMusic()
 end
 
 function Play:update(dt)
