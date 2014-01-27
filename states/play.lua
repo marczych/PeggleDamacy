@@ -122,7 +122,7 @@ function Play:update(dt)
          -- Take the ball out of play because it hit the bottom.
          ball = nil
 
-         if ballsRemaining == 0 then
+         if ballsRemaining <= 0 then
             Sound.stopMusic()
             Gamestate.switch(States.credits, pegsCollected, score)
          end
