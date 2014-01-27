@@ -174,6 +174,7 @@ end
 function Play:keypressed(key, unicode)
    -- Reset the game
    if key == 'r' then
+      Sound.stopMusic()
       Play.enter()
    end
    -- Go to the credits after this ball
