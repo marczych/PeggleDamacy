@@ -56,7 +56,7 @@ function Ball:draw()
    love.graphics.circle("fill", self.position.x, self.position.y, self:getRadius())
 
    for i, peg in ipairs(self.attachedPegs) do
-      peg:drawAtPosition(self.position + peg.position)
+      peg:drawAtPosition(self.position + peg.position, true)
    end
 end
 
