@@ -3,6 +3,8 @@ Vector = require "hump.vector"
 Constants = require "utils.constants"
 Utils = require "utils.utils"
 Class = require "hump.class"
+Sound = require "sound"
+Sound.init()
 
 -- Load game states.
 

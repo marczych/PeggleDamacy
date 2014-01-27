@@ -5,13 +5,11 @@ local Bucket = require "entities.bucket"
 local Ball = require "entities.ball"
 local Peg = require "entities.peg"
 local Hud = require "entities.hud"
-local Sound = require "sound"
 
 local background
 local blueBucket
 local ball
 local pegs
-local sound
 local score
 local hud
 local availableSpectrum
@@ -54,8 +52,7 @@ function Play:enter()
    trailParticles = {}
    lastTrailParticleTime = 0
    pegsCollected = 0
-   sound = Sound()
-   sound.playGameMusic()
+   Sound.playGameMusic()
 end
 
 function Play:update(dt)
@@ -99,7 +96,7 @@ function Play:update(dt)
             if section then
                ball:attachPeg(peg)
                pegsCollectedThisBall = pegsCollectedThisBall + 1;
-               sound.playPeg(math.min(pegsCollectedThisBall, 14))
+               Sound.playPeg(math.min(pegsCollectedThisBall, 14))
                pegsCollected = pegsCollected + 1
                -- Increase the spectrum in the section of the collected peg's wavelength
                Utils.increaseSpectrumSection(section, availableSpectrum)
@@ -126,6 +123,7 @@ function Play:update(dt)
          ball = nil
 
          if ballsRemaining == 0 then
+            Sound.stopMusic()
             Gamestate.switch(States.credits, pegsCollected, score)
          end
       end

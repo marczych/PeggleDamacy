@@ -7,7 +7,7 @@ local imgTitle = love.graphics.newImage("assets/images/title.png")
 local title = {}
 
 function title:enter()
-
+   Sound.playChris()
 end
 
 function title:update(dt)

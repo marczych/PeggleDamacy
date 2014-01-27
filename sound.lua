@@ -1,8 +1,13 @@
 local mainMusic = {}
+local chris = {}
 local scale = {}
 
+local isChrising
 local sound = Class {
    init = function(self)
+      chris = love.audio.newSource("assets/sounds/chris.ogg", "static")
+      chris:setLooping(true)
+      isChrising = false
       table.insert(scale, love.audio.newSource("assets/sounds/pegs/c1.ogg", "static"))
       table.insert(scale, love.audio.newSource("assets/sounds/pegs/d1.ogg", "static"))
       table.insert(scale, love.audio.newSource("assets/sounds/pegs/e1.ogg", "static"))
@@ -30,9 +35,34 @@ local sound = Class {
 }
 
 function sound.playGameMusic()
+   if math.random(1, 2) == 1 then
+      mainMusic = love.audio.newSource("assets/sounds/bassjam.ogg", "static")
+   else
+      mainMusic = love.audio.newSource("assets/sounds/guitarjam.ogg", "static")
+   end
+
    mainMusic:setVolume(5)
    mainMusic:rewind()
    mainMusic:play()
+end
+
+function sound.stopMusic()
+   mainMusic:stop()
+end
+
+function sound.playChris()
+   if isChrising == false then
+      chris:setVolume(5)
+      chris:play()
+      isChrising = true
+   end
+end
+
+function sound.stopChris()
+   if isChrising == true then
+      chris:stop()
+      isChrising = false
+   end
 end
 
 function sound.playPeg(index)

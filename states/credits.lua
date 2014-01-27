@@ -15,6 +15,7 @@ function credits:enter(self, pegsCollected, totalScore)
 
    pegCount = pegsCollected
    score = totalScore
+   Sound.playChris()
 end
 
 function credits:update(dt)

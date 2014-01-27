@@ -1,13 +1,11 @@
 local BackGround = require "entities.background"
 local background = BackGround()
-local Constants = require "utils.constants"
 
 local imgTitle = love.graphics.newImage("assets/images/instructions.png")
 
 local title = {}
 
 function title:enter()
-
 end
 
 function title:update(dt)
@@ -22,6 +20,7 @@ function title:draw()
 end
 
 function title:mousepressed(key, unicode)
+   Sound.stopChris()
    Gamestate.switch(States.play)
 end
 
