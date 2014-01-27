@@ -99,6 +99,7 @@ function Play:update(dt)
             if section then
                ball:attachPeg(peg)
                pegsCollectedThisBall = pegsCollectedThisBall + 1;
+               sound.playPeg(math.min(pegsCollectedThisBall, 14))
                pegsCollected = pegsCollected + 1
                -- Increase the spectrum in the section of the collected peg's wavelength
                Utils.increaseSpectrumSection(section, availableSpectrum)
