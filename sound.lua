@@ -41,6 +41,7 @@ function sound.playGameMusic()
       mainMusic = love.audio.newSource("assets/sounds/guitarjam.ogg", "static")
    end
 
+   mainMusic:setLooping(true)
    mainMusic:setVolume(5)
    mainMusic:rewind()
    mainMusic:play()
