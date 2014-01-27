@@ -174,18 +174,24 @@ function Play:draw()
 end
 
 function Play:keypressed(key, unicode)
+   -- Reset the game
+   if key == 'r' then
+      Play.enter()
+   end
+   -- Go to the credits after this ball
+   if key == 'c' then
+      ballsRemaining = 0
+   end
+   -- Cheat to add a powerup charge
+   if key == 'p' then
+      powerupCharges = powerupCharges + 1
+   end
+
    if not ball then
       return
    end
 
-   if key == 'r' then
-      Play.enter()
-   end
-
-   -- TODO: remove these
-   if key == 'c' then
-      ballsRemaining = 0
-   end
+   -- Cheats to speed the ball up or slow it down
    if key == 'j' then
       ball.velocity = ball.velocity * 1.1
    end
