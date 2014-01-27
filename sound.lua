@@ -18,14 +18,19 @@ local sound = Class {
       --table.insert(scale, love.audio.newSource("assets/sounds/a2.ogg", "static"))
       --table.insert(scale, love.audio.newSource("assets/sounds/b2.ogg", "static"))
 
-      mainMusic = love.audio.newSource("assets/sounds/main_music.ogg", "static")
+      if math.random(1, 2) == 1 then
+         mainMusic = love.audio.newSource("assets/sounds/bassjam.ogg", "static")
+      else
+         mainMusic = love.audio.newSource("assets/sounds/guitarjam.ogg", "static")
+      end
+
       mainMusic:setLooping(true)
-      mainMusic:setVolume(2)
+      mainMusic:setVolume(5)
    end
 }
 
 function sound.playGameMusic()
-   mainMusic:setVolume(2)
+   mainMusic:setVolume(5)
    mainMusic:rewind()
    mainMusic:play()
 end
