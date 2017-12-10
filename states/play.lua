@@ -64,7 +64,7 @@ function Play:update(dt)
    flash = false
 
    -- Slow motion.
-   if love.keyboard.isDown(" ") then
+   if love.keyboard.isDown("space") then
       dt = dt / 5
    end
 
